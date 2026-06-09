@@ -5,6 +5,8 @@ A local-first Progressive Web App that runs on your iPhone home screen.
 
 > Built for one specific user (Or), one specific goal (152 lb → 140 lb by Aug 23, 2026), one specific kit (full gym + pool + tennis + GE CS10G smart scale + Google Fitbit Air).
 
+- **v15 (June 9, 2026):** Full visual redesign — flame-coral palette, auto **light + dark themes** (follows iOS, override in More → Appearance), floating glass nav, new flame app icon.
+
 ## v14 changes (June 9, 2026)
 
 - **Food search is now huge**: type any product and get Open Food Facts matches (~3M foods) alongside the local DB; everything you pick is cached for offline. Favorites (★), recents, copy-yesterday, one-tap re-log, and saved meal templates.

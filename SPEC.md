@@ -208,6 +208,12 @@ settings:       { units, theme, notifications, last_export }
 
 ---
 
+## v15 changelog (2026-06-09) — visual redesign
+- Flame-coral design system: all colors tokenized in :root; full light theme via `prefers-color-scheme` + manual override (`html[data-theme]`, More → Appearance, stored in settings `theme`).
+- New tokens: --accent-rgb, --on-accent, --glow-*, --nav-bg, --ring-track, --mm-*, --tile-*, --hero-bg; JS SVG (rings, muscle map) now uses style-attr CSS vars so both themes render correctly.
+- New flame app icon (logo.svg source, icons re-rendered); manifest colors #0d0f1e; dynamic meta theme-color.
+- SW cache v7.
+
 ## v14 changelog (2026-06-09) — "best it can be" release
 
 ### Food
