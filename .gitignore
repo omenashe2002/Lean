@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+_screenshot_*.png
+_v*.png
+.netlify/
+.vercel/
+*.log
