@@ -5,6 +5,8 @@ A local-first Progressive Web App that runs on your iPhone home screen.
 
 > Built for one specific user (Or), one specific goal (152 lb → 140 lb by Aug 23, 2026), one specific kit (full gym + pool + tennis + GE CS10G smart scale + Google Fitbit Air).
 
+- **v17 (June 10, 2026) — competitive parity release:** Strong/Hevy-class in-gym logging (supersets w/ auto-advance, warm-up calculator, per-set completion with auto rest timer + per-exercise defaults, warm-up/drop/failure set types, session duration), AI quick-log (describe a meal in words), 30-day nutrition trend charts, AI program generator (your goals → custom program), conversational AI coach grounded in your data, persistent-storage request + backup reminders, first-week getting-started checklist. Full competitive analysis in COMPETITIVE-ANALYSIS.md.
+
 - **v16 (June 10, 2026) — friends & family feedback release:** US barcode coverage fixed (USDA database fallback + 14-digit GTIN matching), full **micronutrient tracking** (19 nutrients, %-RDA bars, Cronometer-style), **month schedule calendar** + full-program view, **custom metrics** (waist, BP, glucose, mood — track anything), **Fitbit Air sync** via iOS Shortcut bridge, **Spotify** in workouts (playlists + optional in-app controls), and a complete art-direction overhaul: matte black, single ember accent, emoji-free chrome, bolder numerals.
 
 - **v15 (June 9, 2026):** Full visual redesign — flame-coral palette, auto **light + dark themes** (follows iOS, override in More → Appearance), floating glass nav, new flame app icon.

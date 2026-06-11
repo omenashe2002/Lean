@@ -208,6 +208,16 @@ settings:       { units, theme, notifications, last_export }
 
 ---
 
+## v17 changelog (2026-06-10) — competitive parity release
+
+- **In-workout (Strong/Hevy parity)**: state-driven set logger (EX_MODAL): set types ''|w|d|f (warm-ups excluded from volume/PRs/suggestions/heatmap/progress), warm-up ramp generator (bar×10 → 40%×8 → 60%×5 → 80%×3, unit-aware rounding), per-set ✓ completion auto-starts rest timer, per-exercise rest defaults (settings 'rest_overrides', cycle 60-240s), + Set row adding, supersets (planned[].ss group, toggle in modal, SS badge on cards, auto-advance to partner after save), session duration (started_at on first save → duration_min on finish, live "started Xm ago").
+- **AI quick-log**: Quick tab textarea → same JSON contract as photo (items + 7-core micros) → shared editor (iOS dictation = voice for free).
+- **Nutrition trends**: collapsible 30-day card — kcal & protein lineCharts vs target lines, avg-intake + protein-days tiles.
+- **AI program generator**: picker → "Generate" — days/goal/notes + exercise catalog (id|muscles|equip) → strict JSON validated (ids exist, week=7, sets/rir clamped) → CUSTOM_PROGRAMS (settings 'custom_programs'), merged via allPrograms()/getProgram, deletable, AI badge.
+- **Conversational coach**: chat modal grounded in COACH_CTX (week stats/targets/program/flags), 10-turn memory, evidence-based persona, no-medical guardrail, 400-token replies.
+- **Durability (self-directed)**: navigator.storage.persist() at boot; backup nudge on Today (≥25 records & no export in 14d, settings 'last_backup'); getting-started 4-step checklist (auto-completes, auto-dismisses, settings 'starter_dismissed').
+- SW v10. New suites smoke_v16/v17 (80+ assertions) green.
+
 ## v16 changelog (2026-06-10) — F&F feedback release
 
 - **Food bank**: barcode cascade OFF → USDA FDC (gtinUpc zero-padded to 13/14 digits — the trick for US products); text search merges local + OFF + FDC (badged); FDC key in settings ('fdc_key', DEMO_KEY default, personal key via More → Integrations); built-in staples lazily self-enrich micros from FDC on first pick (settings 'staple_micros' cache).

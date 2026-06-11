@@ -236,9 +236,18 @@
   .modal .handle { display: block; width: 36px; height: 4px; background: var(--line); border-radius: 2px; margin: -8px auto 14px; }
 
   /* Set logger */
-  .set-row { display: grid; grid-template-columns: 28px 1fr 1fr 1fr; gap: 6px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line-soft); }
+  .set-row { display: grid; grid-template-columns: 34px 1fr 1fr 1fr; gap: 6px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line-soft); }
+  .set-row.sr5, .set-row.sr-head { grid-template-columns: 34px 1fr 1fr 1fr 34px; }
   .set-row input { padding: 9px 8px; text-align: center; }
-  .set-row .setnum { color: var(--muted); text-align: center; font-weight: 600; }
+  .set-row .setnum { color: var(--muted); text-align: center; font-weight: 700; }
+  .set-row.sr-done input { opacity: 0.55; }
+  button.set-type { background: var(--bg-2); border: 1px solid var(--line-soft); border-radius: 8px; height: 34px; font-size: 12px; cursor: pointer; }
+  button.set-type.st-w { color: var(--warn); border-color: rgba(255,184,0,0.4); }
+  button.set-type.st-d { color: var(--accent); border-color: rgba(var(--accent-rgb),0.4); }
+  button.set-type.st-f { color: var(--bad); border-color: rgba(255,69,58,0.4); }
+  button.set-done { background: var(--bg-2); border: 1px solid var(--line-soft); border-radius: 8px; height: 34px; color: var(--muted-2); font-weight: 800; cursor: pointer; transition: all 0.12s; }
+  button.set-done.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .ss-badge { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.45); border-radius: 4px; padding: 1px 4px; vertical-align: middle; margin-left: 5px; }
 
   /* Food / list row */
   .list-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
@@ -421,6 +430,11 @@
   /* Confetti (PR / goal celebrations) */
   .confetti-piece { position: fixed; top: -12px; z-index: 300; pointer-events: none; font-size: 18px; animation: confettiFall linear forwards; }
   @keyframes confettiFall { to { transform: translateY(105vh) rotate(540deg); opacity: 0.9; } }
+
+  /* Coach chat */
+  .cc-msg { max-width: 86%; padding: 10px 13px; border-radius: 14px; margin: 6px 0; font-size: 13px; line-height: 1.5; }
+  .cc-user { background: var(--accent); color: var(--on-accent); margin-left: auto; border-bottom-right-radius: 4px; }
+  .cc-ai { background: var(--card-hi); color: var(--text-2); border-bottom-left-radius: 4px; }
 
   /* Coach card */
   .coach-card { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
@@ -646,7 +660,7 @@ async function saveProfile(p) {
   const res = await put('profile', p);
   if (p.id == null) p.id = res;   // newly created
   if (ACTIVE_PROFILE_ID == null) ACTIVE_PROFILE_ID = p.id;
-  _activeProgram = PROGRAMS[p.program_id] || PROGRAMS[DEFAULT_PROGRAM];
+  _activeProgram = PROGRAMS[p.program_id] || CUSTOM_PROGRAMS[p.program_id] || PROGRAMS[DEFAULT_PROGRAM];
   return res;
 }
 async function setActiveProfile(profileId) {
@@ -659,7 +673,7 @@ async function setActiveProfile(profileId) {
   }
   ACTIVE_PROFILE_ID = profileId;
   const cur = all.find(p => p.id === profileId);
-  if (cur) { UNITS = cur.unit_system || 'imperial'; _activeProgram = PROGRAMS[cur.program_id] || PROGRAMS[DEFAULT_PROGRAM]; }
+  if (cur) { UNITS = cur.unit_system || 'imperial'; _activeProgram = PROGRAMS[cur.program_id] || CUSTOM_PROGRAMS[cur.program_id] || PROGRAMS[DEFAULT_PROGRAM]; }
 }
 // Backfill profile_id for existing records (migration on first multi-profile boot)
 async function migrateExistingDataToProfile(profileId) {
@@ -895,7 +909,7 @@ async function computeWeeklySummary() {
   if (kcalDaysCurr.size > 0) summary.avgProtein = mealsCurr.reduce((a,m)=>a+(m.p||0),0)/kcalDaysCurr.size;
   const wkCurr = workouts.filter(w => w.date >= w7 && w.completed);
   summary.workoutsCompleted = wkCurr.length;
-  const totalSets = wkCurr.reduce((a,w) => a + (w.logged_sets||[]).filter(s => !s.kind).length, 0);
+  const totalSets = wkCurr.reduce((a,w) => a + (w.logged_sets||[]).filter(s => !s.kind && s.type !== 'w').length, 0);
   summary.totalSets = totalSets;
   const sleepCurr = bio.filter(b => b.date >= w7 && b.sleep_hours != null);
   if (sleepCurr.length) summary.avgSleep = sleepCurr.reduce((a,b)=>a+b.sleep_hours,0)/sleepCurr.length;
@@ -1149,7 +1163,11 @@ async function openCoachReport() {
       <div class="tile"><div class="label">Protein</div><div class="value num" style="font-size:17px">${r.targets.protein_g}g</div><div class="sub">/day</div></div>
       <div class="tile"><div class="label">Sessions</div><div class="value num" style="font-size:17px">${r.planned}</div><div class="sub">+ daily steps</div></div>
     </div>
-    ${aiOn ? `<div style="height:12px"></div><button class="btn full secondary" id="coach-ai-btn" onclick="coachAINarrative()">AI coach take</button><div id="coach-ai-out" style="margin-top:10px"></div>` : ''}`;
+    ${aiOn ? `<div style="height:12px"></div>
+    <div class="row" style="gap:8px">
+      <button class="btn secondary" style="flex:1" id="coach-ai-btn" onclick="coachAINarrative()">AI coach take</button>
+      <button class="btn gradient" style="flex:1" onclick="openCoachChat()">Ask the coach</button>
+    </div><div id="coach-ai-out" style="margin-top:10px"></div>` : ''}`;
 }
 async function coachAINarrative() {
   const btn = document.getElementById('coach-ai-btn');
@@ -1473,7 +1491,7 @@ const PROGRAMS = {
 const DEFAULT_PROGRAM = 'ppl_6';
 
 function getProgram(p) {
-  return PROGRAMS[p?.program_id] || PROGRAMS[DEFAULT_PROGRAM];
+  return PROGRAMS[p?.program_id] || CUSTOM_PROGRAMS[p?.program_id] || PROGRAMS[DEFAULT_PROGRAM];
 }
 // Dynamic getters for backwards compat where code used to read PROGRAM/WEEK/PROGRAM_LABEL constants.
 // They now read from the user's chosen program. Code that doesn't have profile context uses default.
@@ -1524,7 +1542,7 @@ function applyMesoAdjustments(planEntry, profile) {
 
 function lastLoggedFor(workouts, exId) {
   const s = [...workouts].sort((a,b)=>b.date.localeCompare(a.date));
-  for (const w of s) { if (!w.logged_sets) continue; const sets = w.logged_sets.filter(x => x.ex_id === exId && x.weight != null); if (sets.length) return sets; }
+  for (const w of s) { if (!w.logged_sets) continue; const sets = w.logged_sets.filter(x => x.ex_id === exId && x.weight != null && x.type !== 'w'); if (sets.length) return sets; }
   return null;
 }
 function suggestNextWeight(history, repTarget) {
@@ -2013,6 +2031,51 @@ async function finishOnboarding() {
 }
 
 // -------- 11. Today --------
+// Backup-freshness nudge: shown when there's real data and no recent export.
+// Protects against Safari's 7-day IndexedDB eviction for non-installed tabs.
+// First-week activation checklist — auto-completes, disappears when done or dismissed.
+async function gettingStartedHTML(weights, meals, workouts, bio) {
+  if (await getSetting('starter_dismissed', false)) return '';
+  const steps = [
+    { label: 'Log a weigh-in', done: weights.length >= 1, hint: 'today\'s weigh-in card below' },
+    { label: 'Log a meal', done: meals.length >= 1, hint: 'Food tab — scan, search, or describe it' },
+    { label: 'Complete a workout', done: workouts.some(w => w.completed), hint: 'Workout tab — your plan is ready' },
+    { label: 'Add device data', done: bio.length >= 1, hint: 'Body → Log, or set up the sync Shortcut' },
+  ];
+  const doneCount = steps.filter(s => s.done).length;
+  if (doneCount === steps.length) { await setSetting('starter_dismissed', true); return ''; }
+  if (weights.length + meals.length + workouts.length > 30) { await setSetting('starter_dismissed', true); return ''; }
+  return `<div class="card">
+    <div class="h-row"><h3>Getting started · ${doneCount}/${steps.length}</h3>
+      <button class="btn tiny ghost" onclick="setSetting('starter_dismissed', true).then(renderToday)">Hide</button></div>
+    ${steps.map(s => `<div class="row" style="gap:10px;padding:7px 0">
+      <span style="width:20px;height:20px;border-radius:50%;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;${s.done ? 'background:var(--accent);color:var(--on-accent)' : 'border:1.5px solid var(--line);color:var(--muted-2)'}">${s.done ? '✓' : ''}</span>
+      <div style="flex:1"><span class="text-sm" style="${s.done ? 'opacity:0.55;text-decoration:line-through' : 'font-weight:600'}">${s.label}</span>
+      ${!s.done ? `<div class="muted" style="font-size:11px">${s.hint}</div>` : ''}</div>
+    </div>`).join('')}
+  </div>`;
+}
+async function backupBannerHTML(weights, meals, workouts) {
+  const records = weights.length + meals.length + workouts.length;
+  if (records < 25) return '';
+  const last = await getSetting('last_backup', null);
+  const dismissed = await getSetting('backup_nudge_dismissed', null);
+  if (dismissed === today()) return '';
+  const stale = !last || daysBetween(last, today()) > 14;
+  if (!stale) return '';
+  return `<div class="card" style="padding:12px 14px;border-left:3px solid var(--warn)">
+    <div class="row between" style="gap:10px">
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:700;font-size:13px;margin-bottom:2px">Back up your data</div>
+        <div class="muted text-sm">${last ? `Last backup ${fmt.dateNice(last)}` : 'Never backed up'} — exports take 5 seconds and protect against browser data eviction.</div>
+      </div>
+      <div class="col" style="gap:6px;flex-shrink:0">
+        <button class="btn tiny" onclick="exportData().then(()=>{toast('Backup downloaded');renderToday()})">Export</button>
+        <button class="btn tiny ghost" onclick="setSetting('backup_nudge_dismissed', today()).then(renderToday)">Later</button>
+      </div>
+    </div>
+  </div>`;
+}
 async function renderToday() {
   TITLE.textContent = 'Today';
   SUB.textContent = fmt.dateNice(today());
@@ -2022,6 +2085,8 @@ async function renderToday() {
   ]);
   if (streak >= 1) SUB.textContent += ` · ${streak}-day streak`;
   const cur = latestWeight(weights) || p.weight_kg_start;
+  const backupBanner = await backupBannerHTML(weights, meals, workouts);
+  const starterCard = await gettingStartedHTML(weights, meals, workouts, bio);
   // Use scale's BMR if available (latest reading from import)
   const scaleBMR = latestBio(bio, 'bmr');
   const t = calcTargets(p, cur, { scaleBMR, adaptiveTDEE: adaptiveTDEE?.tdee });
@@ -2036,6 +2101,8 @@ async function renderToday() {
   const deltaFromStart = cur - p.weight_kg_start;
 
   VIEW.innerHTML = `
+    ${backupBanner}
+    ${starterCard}
     ${insight ? `<div class="card insight-card">
       <div class="row" style="gap:12px;align-items:flex-start">
         <div style="flex:1;min-width:0">
@@ -2581,7 +2648,7 @@ async function renderWorkout() {
   planned.forEach(e => { const ex = EX_BY_ID[e.id]; if (ex) ex.primary.forEach(m => { muscleVolume[m] = (muscleVolume[m]||0) + e.sets; }); });
   const activeMuscles = Object.keys(muscleVolume);
   const totalSets = planned.reduce((a,e)=>a+e.sets,0);
-  const completedSets = (session.logged_sets||[]).filter(s=>!s.kind).length;
+  const completedSets = (session.logged_sets||[]).filter(s=>!s.kind && s.type !== 'w').length;
 
   // Header card varies by day type
   let heroCard;
@@ -2608,7 +2675,7 @@ async function renderWorkout() {
         </div>
       </div>
       <div class="divider"></div>
-      <div class="row between"><span class="muted text-sm">Progress</span><span class="num text-sm">${completedSets} / ${totalSets} sets</span></div>
+      <div class="row between"><span class="muted text-sm">Progress${session.completed && session.duration_min ? ` · ${session.duration_min} min` : (session.started_at && !session.completed ? ` · started ${Math.max(1, Math.round((Date.now()-session.started_at)/60000))}m ago` : '')}</span><span class="num text-sm">${completedSets} / ${totalSets} sets</span></div>
       <div class="progress good" style="margin-top:6px;height:6px"><span style="width:${totalSets?(completedSets/totalSets)*100:0}%"></span></div>
     </div>`;
   }
@@ -2676,15 +2743,19 @@ function setWorkoutDay(dStr) { WORKOUT_VIEW_DATE = dStr === today() ? null : dSt
 async function openProgramPicker() {
   const p = await getProfile();
   const current = p.program_id || DEFAULT_PROGRAM;
-  const programs = Object.values(PROGRAMS);
+  const programs = Object.values(allPrograms());
   openModal(`<header><h2>Switch program</h2><button class="close" onclick="closeModal()">Cancel</button></header>
+    <button class="btn full secondary" style="margin-bottom:12px" onclick="openProgramGenerator()">✦ Generate a custom program (AI)</button>
     <p class="muted text-sm" style="margin:0 0 12px">Existing logged workouts stay intact. New days will use the new program.</p>
     <div>
       ${programs.map(prog => `
         <div class="program-card ${prog.id===current?'selected':''}" onclick="switchProgram('${prog.id}')">
           <div class="row between" style="margin-bottom:4px">
-            <div class="text-lg" style="font-weight:600">${prog.name}</div>
-            <span class="pill ${prog.id===current?'good':'subtle'} num">${prog.days}d${prog.id===current?' · active':''}</span>
+            <div class="text-lg" style="font-weight:600">${prog.name}${prog.ai ? ' <span class="ss-badge">AI</span>' : ''}</div>
+            <div class="row" style="gap:6px">
+              <span class="pill ${prog.id===current?'good':'subtle'} num">${prog.days}d${prog.id===current?' · active':''}</span>
+              ${prog.ai ? `<button class="x" style="background:transparent;border:0;color:var(--muted);cursor:pointer;padding:0 4px" onclick="event.stopPropagation();deleteCustomProgram('${prog.id}')">×</button>` : ''}
+            </div>
           </div>
           <div class="muted text-sm">${prog.desc}</div>
         </div>
@@ -2694,9 +2765,9 @@ async function openProgramPicker() {
 async function switchProgram(id) {
   const p = await getProfile();
   p.program_id = id;
-  p.training_days_per_week = PROGRAMS[id].days;
+  p.training_days_per_week = allPrograms()[id].days;
   await saveProfile(p);
-  toast(`Switched to ${PROGRAMS[id].name}`);
+  toast(`Switched to ${allPrograms()[id].name}`);
   closeModal();
   route('more');
 }
@@ -2717,7 +2788,7 @@ function exSparkline(history) {
 
 function exCard(session, e, idx, otherWorkouts) {
   const ex = EX_BY_ID[e.id] || { name: e.id };
-  const logged = (session.logged_sets||[]).filter(s => s.ex_id === e.id);
+  const logged = (session.logged_sets||[]).filter(s => s.ex_id === e.id && !s.kind && s.type !== 'w');
   // Pull historical top weight per session for sparkline
   let history = [];
   if (otherWorkouts) {
@@ -2738,7 +2809,7 @@ function exCard(session, e, idx, otherWorkouts) {
     <div class="row between" style="gap:10px">
       ${thumb}
       <div style="flex:1;min-width:0">
-        <div class="name">${ex.name}</div>
+        <div class="name">${ex.name}${e.ss != null ? ' <span class="ss-badge">SS</span>' : ''}</div>
         <div class="sub">${e.sets} × ${e.reps} @ RIR ${e.rir}</div>
       </div>
       ${spark}
@@ -2753,48 +2824,71 @@ function renderCardio(session) {
   return `<div class="divider"></div><div class="muted" style="margin-bottom:6px">Cardio:</div>` +
     cardio.map((c,i) => `<div class="list-row"><div><div class="name">${c.name}</div><div class="sub">${c.minutes} min · ${c.zone}</div></div><button class="x" onclick="removeCardio(${session.id}, ${i})">×</button></div>`).join('');
 }
+// State-driven exercise logger: set types (warm-up/drop/failure), warm-up generator,
+// per-set completion with auto rest timer, per-exercise rest defaults, supersets.
+let EX_MODAL = null;
+const SET_TYPES = ['', 'w', 'd', 'f'];   // working · warm-up · drop · failure
+const SET_TYPE_LABEL = { '': '—', w: 'W', d: 'D', f: 'F' };
+const SET_TYPE_TITLE = { '': 'working set', w: 'warm-up (excluded from volume/PRs)', d: 'drop set', f: 'to failure' };
+async function exRestDefault(exId) {
+  const overrides = (await getSetting('rest_overrides', {})) || {};
+  return overrides[exId] || (await getSetting('rest_default', 120)) || 120;
+}
 async function openExercise(sessionId, idx) {
   const session = await get('workouts', sessionId);
   const e = session.planned[idx];
   const ex = EX_BY_ID[e.id] || { name: e.id };
   const workouts = await getAll('workouts');
-  const history = lastLoggedFor(workouts.filter(w=>w.id!==sessionId), e.id);
+  const history = lastLoggedFor(workouts.filter(w => w.id !== sessionId), e.id);
   const suggested = suggestNextWeight(history, e.reps);
-  // Compute current 1RM PR (best weight × reps Epley formula) across history
   const allSets = [];
   for (const w of workouts.filter(x => x.id !== sessionId)) {
-    (w.logged_sets||[]).filter(s => s.ex_id === e.id && s.weight && s.reps).forEach(s => allSets.push(s));
+    (w.logged_sets || []).filter(s => s.ex_id === e.id && s.weight && s.reps && s.type !== 'w').forEach(s => allSets.push(s));
   }
-  const epley = s => s.weight * (1 + s.reps/30);
-  const currentPR1RM = allSets.length ? Math.max(...allSets.map(epley)) : 0;
-  const currentBestWeight = allSets.length ? Math.max(...allSets.map(s => s.weight)) : 0;
-  const existing = (session.logged_sets||[]).filter(s => s.ex_id === e.id);
+  const epley = s => s.weight * (1 + s.reps / 30);
+  const pr1RM = allSets.length ? Math.max(...allSets.map(epley)) : 0;
+  const bestKg = allSets.length ? Math.max(...allSets.map(s => s.weight)) : 0;
+  const existing = (session.logged_sets || []).filter(s => s.ex_id === e.id && !s.kind);
   const rows = [];
-  for (let i=0; i<e.sets; i++) {
-    const ex_set = existing[i];
-    const histRow = history?.[i];
-    rows.push({ weight: ex_set?.weight ?? (histRow?.weight ?? suggested ?? ''), reps: ex_set?.reps ?? (histRow?.reps ?? ''), rpe: ex_set?.rpe ?? '' });
+  if (existing.length) {
+    existing.forEach(s => rows.push({ type: s.type || '', weight: s.weight ?? '', reps: s.reps ?? '', rpe: s.rpe ?? '', done: true }));
+    for (let i = existing.length; i < e.sets; i++) rows.push({ type: '', weight: existing[existing.length-1]?.weight ?? suggested ?? '', reps: '', rpe: '', done: false });
+  } else {
+    for (let i = 0; i < e.sets; i++) {
+      const histRow = history?.[i];
+      rows.push({ type: '', weight: histRow?.weight ?? suggested ?? '', reps: histRow?.reps ?? '', rpe: '', done: false });
+    }
   }
-  const dispRows = rows.map(r => ({ ...r, weightDisp: r.weight === '' ? '' : (UNITS==='imperial' ? kgToLb(r.weight) : r.weight) }));
-  const isBarbell = /^(bb_|back_squat|front_squat|rdl|deadlift|ohp_bb|hip_thrust)/.test(e.id) || /barbell|bench press/i.test(ex.name);
+  const restDefault = await exRestDefault(e.id);
+  const partner = session.planned[idx + 1];
+  const ssActive = e.ss != null && partner && partner.ss === e.ss;
+  EX_MODAL = { sessionId, idx, exId: e.id, plan: e, rows, suggested, bestKg, pr1RM, restDefault, ssActive, hasPartner: !!partner };
+  const isBarbell = /^(bb_|back_squat|front_squat|rdl|deadlift|ohp_bb|hip_thrust|incline_bb|close_grip|sumo_deadlift|good_morning|rack_pull|reverse_lunge|smith)/.test(e.id) || /barbell/i.test(ex.name);
   openModal(`
     <header><h2>${ex.name}</h2><button class="close" onclick="stopRestTimer();closeModal()">Done</button></header>
-    <div class="row between" style="margin-bottom:10px">
-      <div class="muted text-sm">${e.sets} × ${e.reps} @ RIR ${e.rir}${suggested?` · suggest <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(suggested):suggested,1)} ${fmt.weightUnit()}</span>`:''}</div>
+    <div class="row between" style="margin-bottom:8px">
+      <div class="muted text-sm">${e.sets} × ${e.reps} @ RIR ${e.rir}${suggested ? ` · suggest <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(suggested):suggested,1)} ${fmt.weightUnit()}</span>` : ''}</div>
       <div class="row" style="gap:6px">
         ${ex.desc ? `<button class="btn tiny secondary" onclick="openExerciseHowTo('${e.id}')">How to</button>` : ''}
         <button class="btn tiny secondary" onclick="openExerciseHistory('${e.id}')">Hx</button>
         ${isBarbell ? `<button class="btn tiny secondary" onclick="openPlateCalc('${e.id}')">Plates</button>` : ''}
       </div>
     </div>
-    ${currentPR1RM > 0 ? `<div class="muted text-sm" style="margin-bottom:8px">PR: <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(currentBestWeight):currentBestWeight,1)} ${fmt.weightUnit()}</span> · e1RM <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(currentPR1RM):currentPR1RM,1)}</span></div>` : ''}
-    <div class="set-row" style="font-weight:600;color:var(--muted);border-bottom:1px solid var(--line)">
-      <div class="setnum">#</div><div style="text-align:center">Wt (${fmt.weightUnit()})</div><div style="text-align:center">Reps</div><div style="text-align:center">RPE</div>
+    ${pr1RM > 0 ? `<div class="muted text-sm" style="margin-bottom:6px">PR <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(bestKg):bestKg,1)} ${fmt.weightUnit()}</span> · e1RM <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(pr1RM):pr1RM,1)}</span></div>` : ''}
+    ${EX_MODAL.hasPartner ? `<label class="row" style="gap:8px;margin:0 0 8px;cursor:pointer;font-size:12px;color:var(--text-2)">
+      <input type="checkbox" id="ss-toggle" style="width:auto" ${ssActive?'checked':''} onchange="toggleSuperset(this.checked)"/>
+      Superset with <strong>${(EX_BY_ID[partner.id]||{name:partner.id}).name}</strong> (auto-advance after saving)
+    </label>` : ''}
+    <div class="set-row sr-head" style="font-weight:600;color:var(--muted);border-bottom:1px solid var(--line)">
+      <div class="setnum">Set</div><div style="text-align:center">${fmt.weightUnit()}</div><div style="text-align:center">Reps</div><div style="text-align:center">RPE</div><div></div>
     </div>
-    <div id="set-rows">${dispRows.map((r,i) => `<div class="set-row"><div class="setnum">${i+1}</div>
-      <input type="number" step="0.5" data-i="${i}" data-k="weight" value="${r.weightDisp === '' ? '' : fmt.num(r.weightDisp,1)}" />
-      <input type="number" data-i="${i}" data-k="reps" value="${r.reps}" />
-      <input type="number" min="1" max="10" data-i="${i}" data-k="rpe" value="${r.rpe}" /></div>`).join('')}</div>
+    <div id="set-rows"></div>
+    <div class="row" style="gap:6px;margin-top:8px">
+      <button class="btn tiny secondary" onclick="addWarmupSets()">+ Warm-ups</button>
+      <button class="btn tiny secondary" onclick="addSetRow()">+ Set</button>
+      <div style="flex:1"></div>
+      <button class="btn tiny ghost" onclick="cycleRestDefault()" id="rest-default-btn">Rest ${restDefault}s ▾</button>
+    </div>
     <div id="rest-timer" style="display:none;margin-top:10px;padding:10px;background:var(--card-hi);border-radius:10px;text-align:center">
       <div class="muted text-sm">Rest timer</div>
       <div class="text-hero num" id="rest-display">2:00</div>
@@ -2805,9 +2899,144 @@ async function openExercise(sessionId, idx) {
       </div>
     </div>
     <div style="height:12px"></div>
-    <div class="row" style="gap:8px"><button class="btn small secondary" style="flex:1" onclick="startRestTimer(120)">Rest 2 min</button><button class="btn small secondary" style="flex:1" onclick="startRestTimer(180)">3 min</button></div>
-    <div style="height:8px"></div>
-    <button class="btn full gradient" onclick="saveExerciseSets(${sessionId}, '${e.id}', ${currentBestWeight}, ${currentPR1RM})">Save sets</button>`);
+    <button class="btn full gradient" onclick="saveExerciseSets()">Save sets</button>`);
+  renderSetRows();
+}
+function renderSetRows() {
+  const el = document.getElementById('set-rows');
+  if (!el || !EX_MODAL) return;
+  let workingNo = 0;
+  el.innerHTML = EX_MODAL.rows.map((r, i) => {
+    if (!r.type) workingNo++;
+    const wDisp = r.weight === '' || r.weight == null ? '' : fmt.num(UNITS === 'imperial' ? kgToLb(r.weight) : r.weight, 1);
+    const label = r.type ? SET_TYPE_LABEL[r.type] : String(workingNo);
+    return `<div class="set-row sr5 ${r.done ? 'sr-done' : ''}">
+      <button class="setnum set-type ${r.type ? 'st-' + r.type : ''}" title="${SET_TYPE_TITLE[r.type]}" onclick="cycleSetType(${i})">${label}</button>
+      <input type="number" step="0.5" inputmode="decimal" value="${wDisp}" oninput="EX_MODAL.rows[${i}].weight = this.value === '' ? '' : (UNITS==='imperial' ? lbToKg(parseFloat(this.value)) : parseFloat(this.value))" />
+      <input type="number" inputmode="numeric" value="${r.reps ?? ''}" oninput="EX_MODAL.rows[${i}].reps = this.value === '' ? '' : parseFloat(this.value)" />
+      <input type="number" min="1" max="10" inputmode="decimal" value="${r.rpe ?? ''}" oninput="EX_MODAL.rows[${i}].rpe = this.value === '' ? '' : parseFloat(this.value)" />
+      <button class="set-done ${r.done ? 'on' : ''}" onclick="toggleSetDone(${i})" aria-label="Complete set">✓</button>
+    </div>`;
+  }).join('');
+}
+function cycleSetType(i) {
+  const r = EX_MODAL.rows[i];
+  r.type = SET_TYPES[(SET_TYPES.indexOf(r.type) + 1) % SET_TYPES.length];
+  renderSetRows();
+}
+function addSetRow() {
+  const last = EX_MODAL.rows[EX_MODAL.rows.length - 1];
+  EX_MODAL.rows.push({ type: '', weight: last?.weight ?? '', reps: last?.reps ?? '', rpe: '', done: false });
+  renderSetRows();
+}
+function removeEmptyTrailingRow() { /* rows persist until save filters empties */ }
+// Warm-up generator: ramp to the first working weight (Hevy-style percentages)
+function addWarmupSets() {
+  const working = EX_MODAL.rows.find(r => !r.type && r.weight !== '' && r.weight != null);
+  const targetKg = working ? +working.weight : null;
+  if (!targetKg) return toast('Set a working weight first');
+  const isImp = UNITS === 'imperial';
+  const barKg = isImp ? lbToKg(45) : 20;
+  const roundTo = isImp ? lbToKg(5) : 2.5;
+  const ramp = [];
+  if (targetKg > barKg * 1.6) ramp.push({ pct: null, kg: barKg, reps: 10 });   // empty bar
+  [[0.4, 8], [0.6, 5], [0.8, 3]].forEach(([pct, reps]) => {
+    const kg = Math.round((targetKg * pct) / roundTo) * roundTo;
+    if (kg > barKg * 0.9 && kg < targetKg * 0.95) ramp.push({ kg, reps });
+  });
+  if (!ramp.length) return toast('Working weight too light to need warm-ups');
+  EX_MODAL.rows = EX_MODAL.rows.filter(r => r.type !== 'w');
+  EX_MODAL.rows.unshift(...ramp.map(r => ({ type: 'w', weight: r.kg, reps: r.reps, rpe: '', done: false })));
+  renderSetRows();
+  toast(`${ramp.length} warm-up sets added`);
+}
+async function toggleSetDone(i) {
+  const r = EX_MODAL.rows[i];
+  r.done = !r.done;
+  renderSetRows();
+  if (r.done) {
+    if (navigator.vibrate) navigator.vibrate(12);
+    const isLast = i === EX_MODAL.rows.length - 1;
+    if (!isLast) startRestTimer(EX_MODAL.restDefault);
+  }
+}
+const REST_STEPS = [60, 90, 120, 150, 180, 240];
+async function cycleRestDefault() {
+  const cur = EX_MODAL.restDefault;
+  const next = REST_STEPS[(REST_STEPS.indexOf(cur) + 1) % REST_STEPS.length] || 120;
+  EX_MODAL.restDefault = next;
+  const overrides = (await getSetting('rest_overrides', {})) || {};
+  overrides[EX_MODAL.exId] = next;
+  await setSetting('rest_overrides', overrides);
+  const btn = document.getElementById('rest-default-btn');
+  if (btn) btn.textContent = `Rest ${next}s ▾`;
+}
+async function toggleSuperset(on) {
+  const session = await get('workouts', EX_MODAL.sessionId);
+  const idx = EX_MODAL.idx;
+  if (on) {
+    const g = Date.now() % 100000;
+    session.planned[idx].ss = g;
+    if (session.planned[idx + 1]) session.planned[idx + 1].ss = g;
+    toast('Superset linked — saving here auto-opens the next exercise');
+  } else {
+    const g = session.planned[idx].ss;
+    session.planned.forEach(p => { if (p.ss === g) delete p.ss; });
+  }
+  await put('workouts', session);
+  EX_MODAL.ssActive = on;
+}
+async function saveExerciseSets() {
+  if (!EX_MODAL) return;
+  const { sessionId, idx, exId, bestKg, pr1RM } = EX_MODAL;
+  const session = await get('workouts', sessionId);
+  session.logged_sets = (session.logged_sets || []).filter(s => !(s.ex_id === exId && s.kind !== 'cardio'));
+  let setNo = 0;
+  for (const r of EX_MODAL.rows) {
+    const w = r.weight === '' ? null : +r.weight;
+    const reps = r.reps === '' ? null : +r.reps;
+    if (w == null || reps == null || isNaN(w) || isNaN(reps)) continue;
+    setNo++;
+    const set = { ex_id: exId, set_no: setNo, weight: w, reps, rpe: r.rpe === '' ? undefined : +r.rpe };
+    if (r.type) set.type = r.type;
+    session.logged_sets.push(set);
+  }
+  if (!session.started_at && setNo > 0) session.started_at = Date.now();
+  await put('workouts', session);
+  // PR detection on working sets only
+  const epley = s => s.weight * (1 + s.reps / 30);
+  const workSets = session.logged_sets.filter(s => s.ex_id === exId && s.weight && !s.kind && s.type !== 'w');
+  if (workSets.length) {
+    const newBest = Math.max(...workSets.map(s => s.weight));
+    const new1RM = Math.max(...workSets.map(epley));
+    if (newBest > bestKg && bestKg > 0) {
+      toast(`New PR — ${fmt.num(UNITS==='imperial'?kgToLb(newBest):newBest, 1)} ${fmt.weightUnit()}`);
+      fireConfetti();
+      if (navigator.vibrate) navigator.vibrate([60, 40, 60, 40, 120]);
+    } else if (new1RM > pr1RM && pr1RM > 0) {
+      toast(`New est. 1RM — ${fmt.num(UNITS==='imperial'?kgToLb(new1RM):new1RM, 1)} ${fmt.weightUnit()}`);
+      fireConfetti(14);
+    } else toast('Sets saved');
+  } else toast('Sets saved');
+  stopRestTimer();
+  // Superset auto-advance: open the linked partner that still has unlogged sets
+  const me = session.planned[idx];
+  if (me && me.ss != null) {
+    const partnerIdx = session.planned.findIndex((p, i) => i !== idx && p.ss === me.ss);
+    if (partnerIdx !== -1) {
+      const partner = session.planned[partnerIdx];
+      const partnerLogged = session.logged_sets.filter(s => s.ex_id === partner.id && !s.kind && s.type !== 'w').length;
+      if (partnerLogged < partner.sets) {
+        EX_MODAL = null;
+        renderWorkout();
+        openExercise(sessionId, partnerIdx);
+        return;
+      }
+    }
+  }
+  EX_MODAL = null;
+  closeModal();
+  renderWorkout();
 }
 
 // Rest timer
@@ -2880,14 +3109,13 @@ function openExerciseHowTo(exId, backTo) {
   startExAnim(exId);
 }
 
-// Exercise history — top-set weight chart, e1RM, recent sessions
 async function openExerciseHistory(exId) {
   const ex = EX_BY_ID[exId] || { name: exId };
   const workouts = (await getAll('workouts')).sort((a,b)=>a.date.localeCompare(b.date));
   const epley = s => s.weight * (1 + s.reps/30);
   const sessions = [];
   for (const w of workouts) {
-    const sets = (w.logged_sets||[]).filter(s => s.ex_id === exId && s.weight != null && s.reps != null);
+    const sets = (w.logged_sets||[]).filter(s => s.ex_id === exId && s.weight != null && s.reps != null && s.type !== 'w');
     if (sets.length) sessions.push({ date: w.date, top: Math.max(...sets.map(s=>s.weight)), e1rm: Math.max(...sets.map(epley)), sets });
   }
   const prTop = sessions.length ? Math.max(...sessions.map(s=>s.top)) : 0;
@@ -2985,6 +3213,7 @@ async function weeklyMuscleVolume() {
       if (s.kind) continue;
       const ex = EX_BY_ID[s.ex_id];
       if (!ex) continue;
+      if (s.type === 'w') continue;                                    // warm-ups don't count toward volume
       ex.primary.forEach(m => { vol[m] = (vol[m]||0) + 1; });
       (ex.secondary||[]).forEach(m => { vol[m] = (vol[m]||0) + 0.5; });   // secondary counts half (Baz-Valle 2022 convention)
     }
@@ -3037,43 +3266,7 @@ function updatePlateCalc(defaultBar, plates) {
       <div class="muted text-sm">${breakdown.map(b => `${b.n}× ${b.p}`).join(' + ') || '—'}${remain > 0.1 ? ` <span class="pill warn">${fmt.num(remain,1)} ${fmt.weightUnit()} short</span>` : ''}</div>
     </div>`;
 }
-async function saveExerciseSets(sessionId, exId, prevBestKg = 0, prev1RM = 0) {
-  const session = await get('workouts', sessionId);
-  session.logged_sets = (session.logged_sets||[]).filter(s => !(s.ex_id === exId && s.kind !== 'cardio'));
-  document.querySelectorAll('#set-rows .set-row').forEach((row, i) => {
-    const data = {};
-    row.querySelectorAll('input').forEach(inp => { if (inp.value) data[inp.dataset.k] = parseFloat(inp.value); });
-    if (data.weight != null && data.reps != null) {
-      const weightKg = UNITS === 'imperial' ? lbToKg(data.weight) : data.weight;
-      session.logged_sets.push({ ex_id: exId, set_no: i+1, weight: weightKg, reps: data.reps, rpe: data.rpe });
-    }
-  });
-  await put('workouts', session);
-  // PR detection
-  const epley = s => s.weight * (1 + s.reps/30);
-  const thisExSets = session.logged_sets.filter(s => s.ex_id === exId && s.weight);
-  if (thisExSets.length) {
-    const newBest = Math.max(...thisExSets.map(s => s.weight));
-    const new1RM = Math.max(...thisExSets.map(epley));
-    if (newBest > prevBestKg && prevBestKg > 0) {
-      const lb = UNITS === 'imperial' ? kgToLb(newBest) : newBest;
-      toast(`New PR — ${fmt.num(lb, 1)} ${fmt.weightUnit()}`);
-      fireConfetti();
-      if (navigator.vibrate) navigator.vibrate([60, 40, 60, 40, 120]);
-    } else if (new1RM > prev1RM && prev1RM > 0) {
-      const lb = UNITS === 'imperial' ? kgToLb(new1RM) : new1RM;
-      toast(`New est. 1RM — ${fmt.num(lb, 1)} ${fmt.weightUnit()}`);
-      fireConfetti(14);
-    } else {
-      toast('Sets saved');
-    }
-  } else {
-    toast('Sets saved');
-  }
-  stopRestTimer();
-  closeModal();
-  renderWorkout();
-}
+
 function openAddCardio(sessionId) {
   openModal(`
     <header><h2>Add cardio</h2><button class="close" onclick="closeModal()">Cancel</button></header>
@@ -3110,6 +3303,10 @@ async function finishWorkout(sessionId) {
   const ok = plannedSets ? (loggedNonCardio >= 0.8 * plannedSets) : (cardioCount > 0);
   if (!ok && !confirm(`Only ${loggedNonCardio}/${plannedSets} sets logged. Mark complete anyway?`)) return;
   s.completed = true;
+  if (s.started_at) {
+    const mins = Math.round((Date.now() - s.started_at) / 60000);
+    if (mins > 0 && mins < 360) s.duration_min = mins;
+  }
   await put('workouts', s);
   if (navigator.vibrate) navigator.vibrate([30, 30, 50]);
   toast('✓ Session complete');
@@ -3212,6 +3409,7 @@ async function renderFood() {
       ${macroBar('Fat', totals.f, t.fat_g, 'g')}
     </div>
     ${microPanelHTML(todayMeals, meals, p)}
+    ${nutritionTrendsHTML(meals, t)}
     <div class="card">
       <div class="h-row"><h3>Meals</h3><button class="btn tiny secondary" onclick="copyYesterdayMeals()" title="Copy all of yesterday's meals">Copy yesterday</button></div>
       ${todayMeals.length ? todayMeals.map(m => `<div class="list-row"><div><div class="name">${m.name}</div><div class="sub num">${fmt.num(m.kcal,0)} kcal · P${fmt.num(m.p,0)} C${fmt.num(m.c,0)} F${fmt.num(m.f,0)}</div></div><button class="x" onclick="removeMeal(${m.id})">×</button></div>`).join('') : `<div style="text-align:center;padding:28px 16px"><div style="font-weight:600;color:var(--text);margin-bottom:4px">Nothing logged yet</div><div class="muted text-sm" style="margin-bottom:14px">Weigh food, search it, log it. Takes 10 seconds.</div><button class="btn small gradient" onclick="openAddFood()">Log first meal</button></div>`}
@@ -3277,7 +3475,15 @@ async function renderAddFoodTab() {
   } else if (ADD_FOOD_TAB === 'photo') {
     renderPhotoFoodTab(body);
   } else if (ADD_FOOD_TAB === 'quick') {
-    body.innerHTML = `<p class="muted text-sm" style="margin:0 0 10px">Type a meal directly. Useful when you know the macros from a label, restaurant menu, or your own cooking.</p>
+    body.innerHTML = `
+      <div style="background:var(--tile-bg);border:1px solid var(--line-soft);border-radius:12px;padding:12px;margin-bottom:14px">
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px">Describe it — AI fills the numbers</div>
+        <textarea id="ql-text" rows="2" placeholder="e.g. chipotle chicken bowl with guac and a coke zero (tip: use the mic key to dictate)"></textarea>
+        <div id="ql-status" class="muted text-sm" style="margin-top:6px"></div>
+        <div id="pf-results"></div>
+        <button class="btn full secondary small" style="margin-top:8px" onclick="parseMealText()">Parse with AI</button>
+      </div>
+      <p class="muted text-sm" style="margin:0 0 10px">Or type the macros yourself:</p>
       <label>Name</label><input id="f-name" placeholder="e.g. Sushi roll, omelette, etc." />
       <div class="grid-2" style="margin-top:8px;gap:10px"><div><label>Calories</label><input type="number" id="f-kcal" placeholder="500" /></div><div><label>Protein (g)</label><input type="number" id="f-p" placeholder="35" oninput="quickMacroHint()" /></div></div>
       <div class="grid-2" style="margin-top:8px;gap:10px"><div><label>Carbs (g)</label><input type="number" id="f-c" placeholder="50" oninput="quickMacroHint()" /></div><div><label>Fat (g)</label><input type="number" id="f-f" placeholder="15" oninput="quickMacroHint()" /></div></div>
@@ -3982,6 +4188,189 @@ async function saveIntegrations() {
   if (fdc) await setSetting('fdc_key', fdc.value.trim());
   if (sp) await setSetting('spotify_client_id', sp.value.trim());
   _fdcCache = {};
+}
+
+// -------- AI quick-log: describe a meal in words → parsed entry --------
+async function parseMealText() {
+  const ta = document.getElementById('ql-text');
+  const status = document.getElementById('ql-status');
+  const text = (ta?.value || '').trim();
+  if (!text) return toast('Describe the meal first');
+  if (!(await aiAvailable())) { status.innerHTML = 'Needs an API key — <a href="#" onclick="closeModal();route(\'more\');setTimeout(openAISettings,100);return false">set up AI</a>'; return; }
+  status.textContent = 'Parsing…';
+  try {
+    const out = await aiCall([{ type: 'text', text:
+      `Parse this meal description into food items with realistic portions: "${text}". Respond with ONLY this JSON: {"items":[{"name":"...","grams":0,"kcal":0,"p":0,"c":0,"f":0,"micro":{"fiber":0,"sugar":0,"satfat":0,"sodium":0,"potassium":0,"calcium":0,"iron":0}}],"confidence":"low|medium|high","note":"one short assumption you made"}. Nutrition is FOR THE PORTION. p/c/f and fiber/sugar/satfat in grams; sodium/potassium/calcium/iron in mg.` }],
+      { maxTokens: 900 });
+    const parsed = extractJSON(out);
+    if (!parsed.items || !parsed.items.length) throw new Error(parsed.note || 'Could not parse that');
+    PHOTO_FOOD_ITEMS = parsed.items.map(it => {
+      const micro = {};
+      if (it.micro && typeof it.micro === 'object') for (const [k, v] of Object.entries(it.micro)) { if (MICRO_BY_KEY[k] && isFinite(+v) && +v >= 0) micro[k] = +v; }
+      return { name: String(it.name||'Item'), grams: +it.grams||0, kcal: +it.kcal||0, p: +it.p||0, c: +it.c||0, f: +it.f||0, micro: Object.keys(micro).length ? micro : null };
+    });
+    status.innerHTML = `<span class="pill ${parsed.confidence==='high'?'good':parsed.confidence==='medium'?'accent':'warn'}">confidence: ${parsed.confidence||'medium'}</span>${parsed.note?` <span class="muted text-sm">${parsed.note}</span>`:''}`;
+    renderPhotoFoodResults();
+  } catch (e) { status.innerHTML = `<span style="color:var(--bad)">${e.message}</span>`; }
+}
+
+// -------- Nutrition trends (30 days) --------
+function nutritionTrendsHTML(allMeals, targets) {
+  const days = [];
+  for (let i = 29; i >= 0; i--) {
+    const d = daysBack(i);
+    const dm = allMeals.filter(m => m.date === d);
+    if (dm.length) days.push({ date: d, kcal: dm.reduce((a,m)=>a+(m.kcal||0),0), p: dm.reduce((a,m)=>a+(m.p||0),0) });
+  }
+  if (days.length < 3) return '';
+  const kcalChart = lineChart(days.map(d => ({ date: d.date, value: d.kcal })), { targetLine: targets.kcal, showReg: false, yLabel: 'kcal' });
+  const pChart = lineChart(days.map(d => ({ date: d.date, value: d.p })), { targetLine: targets.protein_g, showReg: false, yLabel: 'g' });
+  const kcalAvg = Math.round(days.reduce((a,d)=>a+d.kcal,0)/days.length);
+  const pHit = days.filter(d => d.p >= targets.protein_g * 0.9).length;
+  return `<details class="card">
+    <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <h3 style="margin:0">Trends · 30 days</h3>
+      <span class="muted text-sm">${days.length} logged days</span>
+    </summary>
+    <div class="grid-2" style="margin:12px 0 10px">
+      <div class="tile"><div class="label">Avg intake</div><div class="value num" style="font-size:20px">${kcalAvg}</div><div class="sub">target ${targets.kcal} kcal</div></div>
+      <div class="tile"><div class="label">Protein days</div><div class="value num" style="font-size:20px">${pHit}/${days.length}</div><div class="sub">≥${Math.round(targets.protein_g*0.9)}g</div></div>
+    </div>
+    <h3 style="font-size:10px;margin:8px 0 4px">Calories vs target</h3>
+    ${kcalChart}
+    <h3 style="font-size:10px;margin:14px 0 4px">Protein vs target</h3>
+    ${pChart}
+  </details>`;
+}
+
+// -------- AI program generator (Fitbod/Boostcamp-class, on your own key) --------
+let CUSTOM_PROGRAMS = {};
+async function loadCustomPrograms() {
+  CUSTOM_PROGRAMS = (await getSetting('custom_programs', {})) || {};
+}
+function allPrograms() { return { ...PROGRAMS, ...CUSTOM_PROGRAMS }; }
+function openProgramGenerator() {
+  openModal(`<header><h2>Generate a program</h2><button class="close" onclick="openProgramPicker()">Back</button></header>
+    <p class="muted text-sm" style="margin:0 0 12px">Built from the app's ${EXERCISES.length}-exercise library with evidence-based volume (12–20 sets/muscle/wk). Uses your API key once (~$0.01).</p>
+    <label>Training days per week</label>
+    <select id="pg-days"><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
+    <label>Primary goal</label>
+    <select id="pg-goal">
+      <option value="hypertrophy" selected>Build muscle (hypertrophy)</option>
+      <option value="strength">Get stronger (strength focus)</option>
+      <option value="lean">Lean out (support a cut, moderate volume)</option>
+      <option value="athletic">Athletic / general (mixed)</option>
+    </select>
+    <label>Anything to account for? (optional)</label>
+    <textarea id="pg-notes" rows="3" placeholder="e.g. no barbell squats (knee), extra arm volume, hotel gym some weeks, hate lunges…"></textarea>
+    <div id="pg-status" class="muted text-sm" style="margin-top:10px"></div>
+    <div style="height:12px"></div>
+    <button class="btn full gradient" id="pg-go" onclick="generateAIProgram()">Generate</button>`);
+}
+async function generateAIProgram() {
+  const status = document.getElementById('pg-status');
+  const btn = document.getElementById('pg-go');
+  if (!(await aiAvailable())) { status.innerHTML = 'Needs an API key — set up in More → AI features'; return; }
+  const days = parseInt(document.getElementById('pg-days').value);
+  const goal = document.getElementById('pg-goal').value;
+  const notes = document.getElementById('pg-notes').value.trim();
+  btn.disabled = true; status.textContent = 'Designing your program… (~10s)';
+  const catalog = EXERCISES.map(e => `${e.id}|${e.primary.join('+')}|${e.equip}`).join('\n');
+  try {
+    const out = await aiCall([{ type: 'text', text:
+`Design a ${days}-day/week resistance program. Goal: ${goal}. ${notes ? 'User notes: ' + notes + '.' : ''}
+Rules: 12-20 weekly sets per major muscle (count secondary as half), compounds first, 4-7 exercises/day, reps as ranges like "5-8"/"8-12"/"12-15", rir 1-3. Use ONLY these exercise ids (id|muscles|equipment):
+${catalog}
+Respond with ONLY JSON:
+{"name":"...", "desc":"1 line: days · style · volume", "week":["key_or_rest" x7 starting Monday, exactly ${days} non-rest], "labels":{"key":"Label · focus", "rest":"Rest / Cardio"}, "plans":{"key":[{"id":"exercise_id","sets":3,"reps":"8-12","rir":2}]}}
+Every non-rest key in week must exist in labels and plans. Spread training days sensibly across the week.` }],
+      { maxTokens: 2500, smart: true });
+    const prog = extractJSON(out);
+    // Validate hard before accepting
+    if (!prog.week || prog.week.length !== 7) throw new Error('Bad week structure');
+    const keys = [...new Set(prog.week.filter(k => k !== 'rest'))];
+    if (!keys.length || keys.length > days) throw new Error('Bad day count');
+    for (const k of keys) {
+      if (!prog.plans?.[k] || !Array.isArray(prog.plans[k]) || !prog.plans[k].length) throw new Error(`Missing plan for ${k}`);
+      for (const e of prog.plans[k]) {
+        if (!EX_BY_ID[e.id]) throw new Error(`Unknown exercise: ${e.id}`);
+        e.sets = clamp(parseInt(e.sets) || 3, 1, 6);
+        e.rir = clamp(parseInt(e.rir) ?? 2, 0, 4);
+        if (typeof e.reps !== 'string') e.reps = '8-12';
+      }
+    }
+    prog.labels = prog.labels || {};
+    prog.labels.rest = prog.labels.rest || 'Rest / Cardio';
+    keys.forEach(k => { if (!prog.labels[k]) prog.labels[k] = k; });
+    const id = 'ai_' + Date.now().toString(36);
+    const final = { id, name: prog.name || 'My AI program', desc: prog.desc || `${days} days · AI-generated`, days, week: prog.week, labels: prog.labels, plans: prog.plans, ai: true };
+    CUSTOM_PROGRAMS[id] = final;
+    await setSetting('custom_programs', CUSTOM_PROGRAMS);
+    status.innerHTML = '<span style="color:var(--good)">Program ready ✓</span>';
+    setTimeout(() => openProgramPicker(), 400);
+    toast(`"${final.name}" saved`);
+  } catch (e) {
+    status.innerHTML = `<span style="color:var(--bad)">${e.message} — try again</span>`;
+    btn.disabled = false;
+  }
+}
+async function deleteCustomProgram(id) {
+  if (!confirm('Delete this program? Logged workouts stay.')) return;
+  delete CUSTOM_PROGRAMS[id];
+  await setSetting('custom_programs', CUSTOM_PROGRAMS);
+  const p = await getProfile();
+  if (p && p.program_id === id) { p.program_id = DEFAULT_PROGRAM; await saveProfile(p); }
+  openProgramPicker();
+}
+
+// -------- Conversational AI coach (grounded in your data) --------
+let COACH_CHAT = [];
+let COACH_CTX = '';
+async function openCoachChat() {
+  const r = await computeCoachReport();
+  const p = await getProfile();
+  const prog = getProgram(p);
+  COACH_CTX = JSON.stringify({
+    user: { sex: p.sex, age: calcAge(p.dob), heightCm: Math.round(p.height_cm), currentWeight: fmt.weight(r.cur), goal: `${fmt.weight(p.goal_kg)} by ${p.goal_date}`, ratePctPerWk: p.goal_rate_pct },
+    week: { grade: r.grade, trendPctPerWk: r.trend14, avgIntake: r.avgKcal, targetKcal: r.targets.kcal, tdee: r.targets.tdee, tdeeMeasured: !!r.adaptive, proteinDays: r.protDays, sessions: `${r.done7}/${r.planned}`, sleepAvgH: r.avgSleep, hrvZ: r.hrvZ, weeksDieting: Math.round(r.weeksDieting), plateau: r.plateau, flags: r.recs.map(x => x.title) },
+    program: { name: prog.name, week: prog.week },
+    targets: { protein_g: r.targets.protein_g, kcal: r.targets.kcal },
+  });
+  COACH_CHAT = [];
+  openModal(`<header><h2>Ask the coach</h2><button class="close" onclick="openCoachReport()">Back</button></header>
+    <div id="cc-log" style="max-height:48vh;overflow-y:auto;padding:2px 0">
+      <div class="cc-msg cc-ai">I can see your full week — training, intake, trend, recovery. Ask me anything: "why am I not losing?", "swap Friday's session", "what should dinner look like?"</div>
+    </div>
+    <div class="row" style="gap:8px;margin-top:10px">
+      <input id="cc-input" placeholder="Ask anything about your data…" style="flex:1" onkeydown="if(event.key==='Enter')sendCoachChat()"/>
+      <button class="btn" id="cc-send" onclick="sendCoachChat()">Send</button>
+    </div>
+    <p class="muted" style="font-size:10px;margin:8px 0 0">General fitness guidance, not medical advice. Uses your API key (~$0.01/question).</p>`);
+}
+async function sendCoachChat() {
+  const inp = document.getElementById('cc-input');
+  const log = document.getElementById('cc-log');
+  const btn = document.getElementById('cc-send');
+  const q = (inp?.value || '').trim();
+  if (!q) return;
+  inp.value = '';
+  COACH_CHAT.push({ role: 'user', content: q });
+  log.insertAdjacentHTML('beforeend', `<div class="cc-msg cc-user">${q.replace(/</g,'&lt;')}</div><div class="cc-msg cc-ai" id="cc-pending">…</div>`);
+  log.scrollTop = log.scrollHeight;
+  btn.disabled = true;
+  try {
+    const history = COACH_CHAT.slice(-10).map(m => `${m.role === 'user' ? 'User' : 'Coach'}: ${m.content}`).join('\n');
+    const out = await aiCall([{ type: 'text', text: `Conversation so far:\n${history}\n\nAnswer the user's last message.` }], {
+      system: `You are the in-app coach for Lean, an evidence-based fat-loss app (Helms/Israetel school: measured TDEE, 0.5-0.75%/wk loss, 2.4g/kg protein, 12-20 sets/muscle/wk, HRV-guided deloads). The user's current data: ${COACH_CTX}. Be direct and specific with numbers from their data. 2-5 sentences unless asked for detail. No medical diagnoses — refer those to a doctor. No emoji, no headers, no lists.`,
+      maxTokens: 400,
+    });
+    COACH_CHAT.push({ role: 'assistant', content: out });
+    document.getElementById('cc-pending').outerHTML = `<div class="cc-msg cc-ai">${out.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;
+  } catch (e) {
+    document.getElementById('cc-pending').outerHTML = `<div class="cc-msg cc-ai" style="color:var(--bad)">${e.message}</div>`;
+  }
+  btn.disabled = false;
+  log.scrollTop = log.scrollHeight;
 }
 
 // -------- AI settings (More tab) --------
@@ -5630,8 +6019,8 @@ async function renderMore() {
     </div>
     <div class="card">
       <div class="h-row"><h3>Training program</h3><button class="btn tiny secondary" onclick="openProgramPicker()">Switch</button></div>
-      <div class="text-lg" style="font-weight:600">${PROGRAMS[p.program_id || DEFAULT_PROGRAM].name}</div>
-      <div class="muted text-sm" style="margin-top:4px">${PROGRAMS[p.program_id || DEFAULT_PROGRAM].desc}</div>
+      <div class="text-lg" style="font-weight:600">${(allPrograms()[p.program_id] || PROGRAMS[DEFAULT_PROGRAM]).name}</div>
+      <div class="muted text-sm" style="margin-top:4px">${(allPrograms()[p.program_id] || PROGRAMS[DEFAULT_PROGRAM]).desc}</div>
     </div>
     <div class="card">
       <div class="h-row"><h3>Profile</h3><button class="btn tiny secondary" onclick="editProfile()">Edit</button></div>
@@ -5781,7 +6170,7 @@ async function renderTrainingHeatmap() {
   // Build a map: date → set count
   const setCount = {};
   for (const w of workouts) {
-    const sets = (w.logged_sets || []).filter(s => !s.kind).length;
+    const sets = (w.logged_sets || []).filter(s => !s.kind && s.type !== 'w').length;
     const cardio = (w.logged_sets || []).filter(s => s.kind === 'cardio').length;
     setCount[w.date] = sets + cardio * 4;   // count cardio as 4 set-equivalents for intensity coloring
   }
@@ -5870,6 +6259,7 @@ async function deleteProfile(profileId) {
 }
 
 async function exportData() {
+  await setSetting('last_backup', today());
   const data = {};
   for (const s of STORES) data[s] = await getAll(s);
   const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
@@ -5948,7 +6338,7 @@ function tickNumber(el) {
 }
 
 // -------- 17. Service worker + cache hygiene --------
-const APP_VERSION = '2026-06-10-a';
+const APP_VERSION = '2026-06-10-b';
 if ('serviceWorker' in navigator && navigator.serviceWorker) {
   window.addEventListener('load', async () => {
     try {
@@ -6015,6 +6405,9 @@ setTimeout(() => {
     await openDB();
     applyTheme(await getSetting('theme', 'auto'));
     try { await applyStapleMicroCache(); } catch (e) {}
+    try { await loadCustomPrograms(); } catch (e) {}
+    // Ask the browser to never evict our data (auto-granted for installed PWAs)
+    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
     const profiles = await getAllRaw('profile');
     if (profiles.length === 1 && !profiles[0].active) {
       // Migrate: mark the single existing profile as active + backfill profile_id
@@ -6029,7 +6422,7 @@ setTimeout(() => {
       ACTIVE_PROFILE_ID = profiles[0].id;
     }
     const p = await getProfile();
-    if (p) { UNITS = p.unit_system || 'imperial'; _activeProgram = PROGRAMS[p.program_id] || PROGRAMS[DEFAULT_PROGRAM]; }
+    if (p) { UNITS = p.unit_system || 'imperial'; _activeProgram = PROGRAMS[p.program_id] || CUSTOM_PROGRAMS[p.program_id] || PROGRAMS[DEFAULT_PROGRAM]; }
     _bootDone = true;
     try { await handleSpotifyCallback(); } catch (e) {}
     try { if (p && p.onboarded) await handleHashData(); } catch (e) {}
