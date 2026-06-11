@@ -8,7 +8,7 @@
   <linearGradient id="ember" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="#ffb13d"/>
     <stop offset="55%" stop-color="#ff5e3a"/>
-    <stop offset="100%" stop-color="#ff2e7e"/>
+    <stop offset="100%" stop-color="#ff3d00"/>
   </linearGradient>
   <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="#f0f3fa"/>
@@ -18,7 +18,7 @@
   <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="16"/></filter>
 </defs>
 <rect width="512" height="512" rx="116" fill="url(#bgGlow)"/>
-<ellipse cx="256" cy="280" rx="175" ry="125" fill="#ff5e3a" opacity="0.22" filter="url(#soft)"/>
+<ellipse cx="256" cy="280" rx="175" ry="125" fill="#ff5e1f" opacity="0.18" filter="url(#soft)"/>
 <g transform="rotate(-28 256 256)">
   <!-- bar -->
   <rect x="64" y="243" width="384" height="26" rx="13" fill="url(#bar)"/>

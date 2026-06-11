@@ -15,113 +15,113 @@
   :root {
     color-scheme: dark;
     /* ---- LEAN flame palette · dark (default) ---- */
-    --bg: #07080f;
-    --bg-2: #10121f;
-    --card: rgba(24, 27, 46, 0.74);
-    --card-hi: rgba(38, 42, 70, 0.88);
-    --line: rgba(140, 150, 215, 0.16);
-    --line-soft: rgba(140, 150, 215, 0.09);
-    --text: #f8f8ff;
-    --text-2: #ccd1e8;
-    --muted: #8a92b0;
-    --muted-2: #5f6886;
-    --accent: #ff6a3d;            /* flame coral — primary */
-    --accent-rgb: 255, 106, 61;
-    --accent-2: #2dd4a0;          /* mint */
-    --accent-3: #a78bfa;          /* violet */
-    --warn: #ffb224;
-    --bad: #ff5d7a;
-    --good: #2dd4a0;
+    --bg: #09090b;
+    --bg-2: #141417;
+    --card: rgba(22, 22, 26, 0.86);
+    --card-hi: rgba(38, 38, 44, 0.92);
+    --line: rgba(255, 255, 255, 0.10);
+    --line-soft: rgba(255, 255, 255, 0.055);
+    --text: #fafafa;
+    --text-2: #c9c9d1;
+    --muted: #8e8e99;
+    --muted-2: #5c5c66;
+    --accent: #ff5e1f;            /* ember — the single accent */
+    --accent-rgb: 255, 94, 31;
+    --accent-2: #30d158;          /* success green (sparing) */
+    --accent-3: #7a8699;          /* neutral secondary for charts */
+    --warn: #ffb800;
+    --bad: #ff453a;
+    --good: #30d158;
     --on-accent: #ffffff;
-    --gradient: linear-gradient(135deg, #ffb13d 0%, #ff5e3a 55%, #ff2e7e 115%);
-    --gradient-good: linear-gradient(135deg, #2dd4a0 0%, #38bdf8 100%);
-    --gradient-warn: linear-gradient(135deg, #ffb224 0%, #ff5d7a 100%);
-    --glow-1: rgba(255, 106, 61, 0.13);
-    --glow-2: rgba(167, 139, 250, 0.10);
-    --glow-3: rgba(45, 212, 160, 0.06);
-    --nav-bg: rgba(13, 15, 28, 0.82);
+    --gradient: linear-gradient(135deg, #ff7a2e 0%, #ff3d00 100%);
+    --gradient-good: linear-gradient(135deg, #30d158 0%, #14a04a 100%);
+    --gradient-warn: linear-gradient(135deg, #ffb800 0%, #ff453a 100%);
+    --glow-1: rgba(255, 94, 31, 0.06);
+    --glow-2: rgba(255, 255, 255, 0.015);
+    --glow-3: transparent;
+    --nav-bg: rgba(9, 9, 11, 0.86);
     --ring-track: rgba(255, 255, 255, 0.07);
     --mm-base: rgba(255, 255, 255, 0.07);
     --mm-line: rgba(255, 255, 255, 0.11);
-    --tile-bg: linear-gradient(160deg, rgba(44, 48, 82, 0.55), rgba(26, 29, 52, 0.55));
-    --tile-shine: rgba(255, 255, 255, 0.08);
-    --hero-bg: linear-gradient(160deg, rgba(46, 44, 84, 0.72) 0%, rgba(24, 27, 46, 0.72) 100%);
+    --tile-bg: rgba(255, 255, 255, 0.035);
+    --tile-shine: rgba(255, 255, 255, 0.06);
+    --hero-bg: linear-gradient(170deg, #1b1b20 0%, #131316 100%);
     --chart-area-opacity: 0.30;
     --pad: 18px;
-    --r: 20px;
-    --r-sm: 13px;
+    --r: 16px;
+    --r-sm: 11px;
     --shadow: 0 6px 28px rgba(0,0,0,0.30), 0 0 0 1px var(--line) inset, 0 1px 0 rgba(255,255,255,0.05) inset;
-    --shadow-pop: 0 8px 32px rgba(255, 94, 58, 0.22);
+    --shadow-pop: 0 8px 28px rgba(255, 61, 0, 0.28);
   }
   /* ---- Light theme (auto via system, or forced via data-theme) ---- */
   html[data-theme="light"] { color-scheme: light; }
   @media (prefers-color-scheme: light) { html:not([data-theme="dark"]) { color-scheme: light; } }
   html[data-theme="light"], html.theme-light {
-    --bg: #f2f3f9;
+    --bg: #f5f5f7;
     --bg-2: #ffffff;
-    --card: rgba(255, 255, 255, 0.86);
-    --card-hi: #edeff8;
-    --line: rgba(40, 50, 105, 0.14);
-    --line-soft: rgba(40, 50, 105, 0.07);
-    --text: #161a2e;
-    --text-2: #3e4565;
-    --muted: #6b7392;
-    --muted-2: #9aa1ba;
-    --accent: #f2502b;
-    --accent-rgb: 242, 80, 43;
-    --accent-2: #0ca678;
-    --accent-3: #7c5cf0;
-    --warn: #d98206;
-    --bad: #e23b60;
-    --good: #0ca678;
+    --card: rgba(255, 255, 255, 0.92);
+    --card-hi: #ebebf0;
+    --line: rgba(20, 22, 40, 0.13);
+    --line-soft: rgba(20, 22, 40, 0.065);
+    --text: #141418;
+    --text-2: #44444e;
+    --muted: #71717c;
+    --muted-2: #a3a3ad;
+    --accent: #f04a00;
+    --accent-rgb: 240, 74, 0;
+    --accent-2: #0a8f4d;
+    --accent-3: #6e7787;
+    --warn: #b25e00;
+    --bad: #d70015;
+    --good: #0a8f4d;
     --on-accent: #ffffff;
-    --glow-1: rgba(255, 116, 61, 0.13);
-    --glow-2: rgba(140, 110, 250, 0.10);
-    --glow-3: rgba(20, 200, 150, 0.08);
+    --glow-1: rgba(255, 94, 31, 0.05);
+    --glow-2: transparent;
+    --glow-3: transparent;
     --nav-bg: rgba(255, 255, 255, 0.82);
     --ring-track: rgba(25, 32, 70, 0.08);
     --mm-base: rgba(25, 32, 70, 0.08);
     --mm-line: rgba(25, 32, 70, 0.13);
-    --tile-bg: linear-gradient(160deg, rgba(248, 249, 255, 0.9), rgba(238, 240, 250, 0.9));
+    --tile-bg: rgba(20, 22, 40, 0.035);
     --tile-shine: rgba(255, 255, 255, 0.9);
-    --hero-bg: linear-gradient(160deg, #ffffff 0%, #f3f1ff 100%);
+    --hero-bg: #ffffff;
     --chart-area-opacity: 0.18;
     --shadow: 0 6px 24px rgba(28, 35, 80, 0.10), 0 0 0 1px var(--line-soft) inset;
-    --shadow-pop: 0 8px 28px rgba(242, 80, 43, 0.25);
+    --shadow-pop: 0 8px 24px rgba(240, 74, 0, 0.25);
   }
   @media (prefers-color-scheme: light) {
     html:not([data-theme="dark"]) {
-      --bg: #f2f3f9;
+      --bg: #f5f5f7;
       --bg-2: #ffffff;
-      --card: rgba(255, 255, 255, 0.86);
-      --card-hi: #edeff8;
-      --line: rgba(40, 50, 105, 0.14);
-      --line-soft: rgba(40, 50, 105, 0.07);
-      --text: #161a2e;
-      --text-2: #3e4565;
-      --muted: #6b7392;
-      --muted-2: #9aa1ba;
-      --accent: #f2502b;
-      --accent-rgb: 242, 80, 43;
-      --accent-2: #0ca678;
-      --accent-3: #7c5cf0;
-      --warn: #d98206;
-      --bad: #e23b60;
-      --good: #0ca678;
+      --card: rgba(255, 255, 255, 0.92);
+      --card-hi: #ebebf0;
+      --line: rgba(20, 22, 40, 0.13);
+      --line-soft: rgba(20, 22, 40, 0.065);
+      --text: #141418;
+      --text-2: #44444e;
+      --muted: #71717c;
+      --muted-2: #a3a3ad;
+      --accent: #f04a00;
+      --accent-rgb: 240, 74, 0;
+      --accent-2: #0a8f4d;
+      --accent-3: #6e7787;
+      --warn: #b25e00;
+      --bad: #d70015;
+      --good: #0a8f4d;
       --on-accent: #ffffff;
-      --glow-1: rgba(255, 116, 61, 0.13);
-      --glow-2: rgba(140, 110, 250, 0.10);
-      --glow-3: rgba(20, 200, 150, 0.08);
+      --glow-1: rgba(255, 94, 31, 0.05);
+      --glow-2: transparent;
+      --glow-3: transparent;
       --nav-bg: rgba(255, 255, 255, 0.82);
       --ring-track: rgba(25, 32, 70, 0.08);
       --mm-base: rgba(25, 32, 70, 0.08);
       --mm-line: rgba(25, 32, 70, 0.13);
-      --tile-bg: linear-gradient(160deg, rgba(248, 249, 255, 0.9), rgba(238, 240, 250, 0.9));
+      --tile-bg: rgba(20, 22, 40, 0.035);
       --tile-shine: rgba(255, 255, 255, 0.9);
-      --hero-bg: linear-gradient(160deg, #ffffff 0%, #f3f1ff 100%);
+      --hero-bg: #ffffff;
       --chart-area-opacity: 0.18;
       --shadow: 0 6px 24px rgba(28, 35, 80, 0.10), 0 0 0 1px var(--line-soft) inset;
-      --shadow-pop: 0 8px 28px rgba(242, 80, 43, 0.25);
+      --shadow-pop: 0 8px 24px rgba(240, 74, 0, 0.25);
     }
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -148,13 +148,13 @@
 
   /* Header */
   header.top { display: flex; align-items: flex-end; justify-content: space-between; padding: 18px var(--pad) 8px; }
-  header.top h1 { font-size: 28px; font-weight: 700; margin: 0; letter-spacing: -0.7px; }
+  header.top h1 { font-size: 30px; font-weight: 800; margin: 0; letter-spacing: -1px; }
   header.top .subtitle { font-size: 13px; color: var(--muted); margin-top: 3px; font-weight: 500; }
 
   main { padding: 4px var(--pad) 24px; max-width: 720px; margin: 0 auto; }
 
   /* Cards */
-  .card { background: var(--card); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); border-radius: var(--r); padding: 18px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .card { background: var(--card); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-radius: var(--r); padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
   .card.hero { background: var(--hero-bg); }
   .card h3 { margin: 0 0 12px; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
   .card .h-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -172,8 +172,8 @@
   .text-sm { font-size: 13px; }
   .text-lg { font-size: 16px; }
   .text-xl { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
-  .text-hero { font-size: 36px; font-weight: 700; letter-spacing: -1px; }
-  .text-jumbo { font-size: 48px; font-weight: 700; letter-spacing: -1.5px; line-height: 1; }
+  .text-hero { font-size: 42px; font-weight: 800; letter-spacing: -1.4px; }
+  .text-jumbo { font-size: 58px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
   .num { font-variant-numeric: tabular-nums; }
 
   /* Pills */
@@ -213,7 +213,7 @@
   .tile { background: var(--tile-bg); border: 1px solid var(--line-soft); border-radius: 14px; padding: 14px; position: relative; overflow: hidden; }
   .tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--tile-shine), transparent); }
   .tile .label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.9px; font-weight: 700; margin-bottom: 6px; }
-  .tile .value { font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
+  .tile .value { font-size: 24px; font-weight: 800; letter-spacing: -0.6px; }
   .tile .sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
 
   /* Bottom nav — floating glass dock */
@@ -274,34 +274,34 @@
   /* Hero stat row (under big ring) */
   .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 0 4px; }
   .hero-stat-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); }
-  .hero-stat-value { font-size: 22px; font-weight: 700; letter-spacing: -0.4px; color: var(--text); }
+  .hero-stat-value { font-size: 24px; font-weight: 800; letter-spacing: -0.6px; color: var(--text); }
   .hero-stat-delta { font-size: 11px; font-weight: 600; }
 
   /* Composition split bar */
   .comp-bar { display: flex; height: 28px; border-radius: 14px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line-soft); }
   .comp-segment { height: 100%; transition: width 0.5s ease-out; }
-  .comp-segment.lean { background: linear-gradient(90deg, #38bdf8, #2dd4a0); }
-  .comp-segment.fat { background: linear-gradient(90deg, #ffb13d, #ff5e3a); }
-  .comp-segment.bone { background: linear-gradient(90deg, #b794f4, #a78bfa); }
+  .comp-segment.lean { background: linear-gradient(90deg, #4a90e2, #5b9dff); }
+  .comp-segment.fat { background: linear-gradient(90deg, #ff7a2e, #ff3d00); }
+  .comp-segment.bone { background: linear-gradient(90deg, #8e8e99, #6e6e78); }
   .comp-legend { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-2); font-weight: 600; }
   .comp-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-  .comp-dot.lean { background: #38bdf8; }
-  .comp-dot.fat { background: #ff5e3a; }
-  .comp-dot.bone { background: #a78bfa; }
+  .comp-dot.lean { background: #5b9dff; }
+  .comp-dot.fat { background: #ff5e1f; }
+  .comp-dot.bone { background: #8e8e99; }
 
   /* Info / tooltip icon */
   .info-icon { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: var(--card-hi); border: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 700; font-style: italic; font-family: Georgia, serif; cursor: pointer; padding: 0; margin-left: 4px; vertical-align: middle; line-height: 1; transition: all 0.15s; }
   .info-icon:hover { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 
   /* Mesocycle card */
-  .meso-card { background: linear-gradient(160deg, rgba(45,212,160,0.09), rgba(56,189,248,0.05)); border: 1px solid rgba(45,212,160,0.20); padding: 12px 14px; margin-bottom: 12px; }
+  .meso-card { background: rgba(48,209,88,0.07); border: 1px solid rgba(48,209,88,0.18); padding: 12px 14px; margin-bottom: 12px; }
   .meso-dots { display: flex; gap: 4px; align-items: center; }
   .meso-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
   .meso-dot.active { background: var(--gradient); width: 22px; border-radius: 4px; }
   .meso-dot.done { background: var(--accent-2); }
 
   /* Daily insight card */
-  .insight-card { background: linear-gradient(160deg, rgba(var(--accent-rgb),0.12), rgba(167,139,250,0.08)); border: 1px solid rgba(var(--accent-rgb),0.22); }
+  .insight-card { background: rgba(var(--accent-rgb),0.08); border: 1px solid rgba(var(--accent-rgb),0.22); border-left: 3px solid var(--accent); }
   .insight-emoji { font-size: 32px; line-height: 1; flex-shrink: 0; padding-top: 2px; }
   .insight-headline { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
   .insight-detail { font-size: 13px; color: var(--text-2); line-height: 1.45; }
@@ -322,7 +322,7 @@
   /* Achievement badges */
   .badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .badge { aspect-ratio: 1; border-radius: 12px; padding: 6px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; transition: all 0.2s; }
-  .badge.earned { background: linear-gradient(160deg, rgba(var(--accent-rgb),0.14), rgba(167,139,250,0.14)); border: 1px solid rgba(var(--accent-rgb),0.30); }
+  .badge.earned { background: rgba(var(--accent-rgb),0.10); border: 1px solid rgba(var(--accent-rgb),0.30); }
   .badge.locked { background: var(--bg-2); border: 1px solid var(--line-soft); opacity: 0.45; }
   .badge-emoji { font-size: 26px; line-height: 1; }
   .badge-title { font-size: 9px; font-weight: 600; line-height: 1.15; color: var(--text-2); padding: 0 2px; }
@@ -361,8 +361,8 @@
   .week-day .wd-check { position: absolute; top: 4px; right: 6px; font-size: 11px; color: var(--good); font-weight: 700; }
 
   /* Workout exercise card */
-  .ex-card { background: linear-gradient(160deg, rgba(40,52,90,0.4), rgba(22,30,58,0.4)); border: 1px solid var(--line-soft); border-radius: 14px; padding: 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
-  .ex-card:hover { background: linear-gradient(160deg, rgba(48,62,104,0.55), rgba(28,38,70,0.55)); border-color: var(--line); }
+  .ex-card { background: var(--tile-bg); border: 1px solid var(--line-soft); border-radius: 13px; padding: 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+  .ex-card:hover { background: var(--card-hi); border-color: var(--line); }
   .ex-card:active { transform: scale(0.99); }
   .ex-card .name { font-weight: 600; margin-bottom: 3px; font-size: 14px; }
   .ex-card .sub { color: var(--muted); font-size: 12px; }
@@ -404,12 +404,26 @@
   .ex-swap-btn { background: transparent; border: 1px solid var(--line); color: var(--muted); width: 28px; height: 28px; border-radius: 8px; font-size: 13px; cursor: pointer; flex-shrink: 0; padding: 0; transition: all 0.15s; }
   .ex-swap-btn:hover { color: var(--accent); border-color: var(--accent); }
 
+  /* Month calendar */
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-dow { text-align: center; font-size: 10px; font-weight: 800; color: var(--muted-2); letter-spacing: 1px; padding: 2px 0; }
+  .cal-day { position: relative; background: var(--bg-2); border: 1px solid var(--line-soft); border-radius: 9px; padding: 5px 2px 4px; text-align: center; cursor: pointer; min-height: 46px; transition: transform 0.1s; }
+  .cal-day:active { transform: scale(0.94); }
+  .cal-day .cal-num { font-size: 13px; font-weight: 700; }
+  .cal-day .cal-label { font-size: 8px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.2px; margin-top: 2px; }
+  .cal-rest { opacity: 0.45; }
+  .cal-today { border-color: var(--accent); border-width: 1.5px; }
+  .cal-done { background: rgba(var(--accent-rgb), 0.12); border-color: rgba(var(--accent-rgb), 0.35); }
+  .cal-done .cal-label { color: var(--accent); }
+  .cal-missed .cal-num { color: var(--muted-2); }
+  .cal-tick { position: absolute; top: 2px; right: 4px; font-size: 9px; font-weight: 800; color: var(--accent); }
+
   /* Confetti (PR / goal celebrations) */
   .confetti-piece { position: fixed; top: -12px; z-index: 300; pointer-events: none; font-size: 18px; animation: confettiFall linear forwards; }
   @keyframes confettiFall { to { transform: translateY(105vh) rotate(540deg); opacity: 0.9; } }
 
   /* Coach card */
-  .coach-card { background: linear-gradient(160deg, rgba(52,211,153,0.10), rgba(122,168,255,0.08)); border: 1px solid rgba(52,211,153,0.22); }
+  .coach-card { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
   .coach-rec { padding: 10px 12px; background: var(--bg-2); border-radius: 10px; margin: 8px 0; border-left: 3px solid var(--accent); }
   .coach-rec.act { border-left-color: var(--warn); }
   .coach-rec .rec-title { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
@@ -421,6 +435,7 @@
   /* Food source badges */
   .src-badge { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.4px; padding: 2px 5px; border-radius: 4px; vertical-align: middle; margin-left: 5px; }
   .src-badge.off { background: rgba(52,211,153,0.15); color: var(--good); }
+  .src-badge.usda { background: rgba(56,140,255,0.15); color: #5b9dff; }
   .src-badge.fav { color: var(--warn); background: rgba(251,191,36,0.12); }
   .fav-star { background: transparent; border: 0; font-size: 16px; cursor: pointer; padding: 4px 6px; color: var(--muted-2); flex-shrink: 0; }
   .fav-star.on { color: var(--warn); }
@@ -456,8 +471,8 @@
 <div id="modal" class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal-body"></div></div>
 
 <svg width="0" height="0" style="position:absolute"><defs>
-  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ffb13d"/><stop offset="55%" stop-color="#ff5e3a"/><stop offset="100%" stop-color="#ff2e7e"/></linearGradient>
-  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff6a3d" stop-opacity="0.45"/><stop offset="100%" stop-color="#ff6a3d" stop-opacity="0"/></linearGradient>
+  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff7a2e"/><stop offset="100%" stop-color="#ff3d00"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff5e1f" stop-opacity="0.40"/><stop offset="100%" stop-color="#ff5e1f" stop-opacity="0"/></linearGradient>
 </defs></svg>
 
 <script>
@@ -469,12 +484,12 @@
 
 // -------- 1. DB layer --------
 const DB_NAME = 'lean-db';
-const DB_VER  = 3;
-const STORES  = ['profile','weights','biometrics','steps','workouts','meals','custom_foods','recipes','settings','exercise_overrides','progress_photos'];
+const DB_VER  = 4;
+const STORES  = ['profile','weights','biometrics','steps','workouts','meals','custom_foods','recipes','settings','exercise_overrides','progress_photos','metric_entries'];
 // Per-profile filtering. Set on boot/switch from the active profile's id.
 let ACTIVE_PROFILE_ID = null;
 // Stores that ARE filtered by profile (data stores). 'profile' itself + 'settings' + 'custom_foods' (shared food DB) are global.
-const PROFILE_SCOPED_STORES = ['weights','biometrics','steps','workouts','meals','recipes','exercise_overrides','progress_photos'];
+const PROFILE_SCOPED_STORES = ['weights','biometrics','steps','workouts','meals','recipes','exercise_overrides','progress_photos','metric_entries'];
 let _db;
 function openDB() {
   return new Promise((res, rej) => {
@@ -758,52 +773,52 @@ async function dailyInsight() {
     const m28 = hrv28.reduce((a,b)=>a+b.hrv_rmssd,0)/hrv28.length;
     const sd = Math.sqrt(hrv28.reduce((a,b)=>a+Math.pow(b.hrv_rmssd-m28,2),0)/hrv28.length) || 1;
     const z = (m7-m28)/sd;
-    if (z < -1) return { emoji: '🛑', headline: 'HRV is suppressed', detail: `7-day average ${Math.round(m7)} ms vs ${Math.round(m28)} ms baseline (z = ${z.toFixed(1)}). Your nervous system is taxed. Consider a deload week or extra sleep.`, action: 'Open Body' };
+    if (z < -1) return { emoji: '', headline: 'HRV is suppressed', detail: `7-day average ${Math.round(m7)} ms vs ${Math.round(m28)} ms baseline (z = ${z.toFixed(1)}). Your nervous system is taxed. Consider a deload week or extra sleep.`, action: 'Open Body' };
   }
 
   // 2. Goal reached
   if (p.goal_kg && cur <= p.goal_kg) {
-    return { emoji: '🎉', headline: 'Goal weight reached', detail: `You hit ${fmt.weight(p.goal_kg)}. Time to decide: maintain, recomp, or set a new target.`, action: 'Open More' };
+    return { emoji: '', headline: 'Goal weight reached', detail: `You hit ${fmt.weight(p.goal_kg)}. Time to decide: maintain, recomp, or set a new target.`, action: 'Open More' };
   }
 
   // 3. On track (rate matches target ±30%)
   if (trendPct != null && goalPct < 0) {
     const ratio = trendPct / goalPct;   // both negative — ratio ~1 = on track
     if (ratio >= 0.7 && ratio <= 1.3) {
-      return { emoji: '🎯', headline: 'On track', detail: `Losing ${fmt.num(Math.abs(trendPct),2)}%/wk — bang on your ${Math.abs(goalPct)}% target. Keep doing what you're doing.`, action: null };
+      return { emoji: '', headline: 'On track', detail: `Losing ${fmt.num(Math.abs(trendPct),2)}%/wk — bang on your ${Math.abs(goalPct)}% target. Keep doing what you're doing.`, action: null };
     }
     if (ratio < 0.3) {
       const deficitNeeded = Math.round((Math.abs(goalPct) * cur * 7700 / 100) / 7);
-      return { emoji: '📉', headline: 'Loss slowing', detail: `Trending ${fmt.num(Math.abs(trendPct),2)}%/wk vs ${Math.abs(goalPct)}% target. Tighten food or add a cardio session. Target deficit: ~${deficitNeeded} kcal/day.`, action: 'Open Food' };
+      return { emoji: '', headline: 'Loss slowing', detail: `Trending ${fmt.num(Math.abs(trendPct),2)}%/wk vs ${Math.abs(goalPct)}% target. Tighten food or add a cardio session. Target deficit: ~${deficitNeeded} kcal/day.`, action: 'Open Food' };
     }
     if (ratio > 1.5) {
-      return { emoji: '⚠️', headline: 'Losing too fast', detail: `${fmt.num(Math.abs(trendPct),2)}%/wk is above the ${Math.abs(goalPct)}% target — risks muscle loss (Garthe 2011). Add ~150 kcal/day or take a diet break.`, action: 'Open Food' };
+      return { emoji: '', headline: 'Losing too fast', detail: `${fmt.num(Math.abs(trendPct),2)}%/wk is above the ${Math.abs(goalPct)}% target — risks muscle loss (Garthe 2011). Add ~150 kcal/day or take a diet break.`, action: 'Open Food' };
     }
   }
 
   // 4. Protein adherence low
   const protMisses = protHits.filter(h => h.any && !h.hit).length;
   if (protMisses >= 3) {
-    return { emoji: '🥩', headline: 'Protein lagging', detail: `Missed protein target ${protMisses} of the last 7 days. Aim for ${targets.protein_g}g/day. A scoop of whey + chicken breast at dinner usually does it.`, action: 'Open Food' };
+    return { emoji: '', headline: 'Protein lagging', detail: `Missed protein target ${protMisses} of the last 7 days. Aim for ${targets.protein_g}g/day. A scoop of whey + chicken breast at dinner usually does it.`, action: 'Open Food' };
   }
 
   // 5. Training missed
   if (done7 < planned * 0.7 && done7 < planned) {
-    return { emoji: '💪', headline: 'Workouts behind', detail: `${done7} of ${planned} planned this week. Even one short session today keeps the streak alive.`, action: 'Open Workout' };
+    return { emoji: '', headline: 'Workouts behind', detail: `${done7} of ${planned} planned this week. Even one short session today keeps the streak alive.`, action: 'Open Workout' };
   }
 
   // 6. Streak milestone coming
-  if (streak >= 5 && streak < 7) return { emoji: '🔥', headline: `${7 - streak} day${7 - streak === 1 ? '' : 's'} to a 7-day streak`, detail: `Log today's weight to keep the streak alive.`, action: null };
-  if (streak >= 25 && streak < 30) return { emoji: '🔥', headline: `${30 - streak} days to a 30-day streak`, detail: `You're almost at a full month of consistency.`, action: null };
+  if (streak >= 5 && streak < 7) return { emoji: '', headline: `${7 - streak} day${7 - streak === 1 ? '' : 's'} to a 7-day streak`, detail: `Log today's weight to keep the streak alive.`, action: null };
+  if (streak >= 25 && streak < 30) return { emoji: '', headline: `${30 - streak} days to a 30-day streak`, detail: `You're almost at a full month of consistency.`, action: null };
 
   // 7. New week — show weekly summary teaser
   if (new Date().getDay() === 1) {
-    return { emoji: '📅', headline: 'New week', detail: `Fresh start. Last week: ${done7} sessions completed. Aim for ${planned} this week.`, action: null };
+    return { emoji: '', headline: 'New week', detail: `Fresh start. Last week: ${done7} sessions completed. Aim for ${planned} this week.`, action: null };
   }
 
   // 8. Default — first day or quiet day
-  if (weights.length < 3) return { emoji: '👋', headline: 'Just getting started', detail: `Log your weight 5+ times this week to unlock the adaptive TDEE engine and unlock your first achievement.`, action: null };
-  return { emoji: '✨', headline: 'Stay consistent', detail: `Nothing critical to flag today. The fundamentals — weigh-in, protein, train — are doing the work.`, action: null };
+  if (weights.length < 3) return { emoji: '', headline: 'Just getting started', detail: `Log your weight 5+ times this week to unlock the adaptive TDEE engine and unlock your first achievement.`, action: null };
+  return { emoji: '', headline: 'Stay consistent', detail: `Nothing critical to flag today. The fundamentals — weigh-in, protein, train — are doing the work.`, action: null };
 }
 
 // -------- Achievement engine --------
@@ -859,7 +874,7 @@ async function evaluateAchievements() {
     await put('profile', profile);
     // Vibrate + toast each
     if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
-    for (const a of newlyEarned) toast(`${a.emoji} ${a.title}`);
+    for (const a of newlyEarned) toast(`Achievement — ${a.title}`);
   }
   return [...earnedIds];
 }
@@ -1026,49 +1041,49 @@ async function computeCoachReport() {
   // Recommendation engine (ordered by priority; max ~4 surfaced)
   const recs = [];
   if (hrvZ != null && hrvZ < -1 && currentMesoWeek(p) !== 5) {
-    recs.push({ icon:'🛑', act:1, title:'Recovery is suppressed — pull the deload forward',
+    recs.push({ icon:'', act:1, title:'Recovery is suppressed — pull the deload forward',
       detail:`7-day HRV is ${Math.abs(hrvZ).toFixed(1)} SD below your baseline. One lighter week now beats three forced ones later.`,
       action:{ label:'Start deload week', fn:'startDeloadNow()' } });
   }
   if (p.goal_kg && cur <= p.goal_kg) {
-    recs.push({ icon:'🎉', act:0, title:'Goal reached — decide the next chapter',
+    recs.push({ icon:'', act:0, title:'Goal reached — decide the next chapter',
       detail:'Options: reverse-diet to maintenance over 2-3 weeks, hold here to consolidate, or set a recomp/muscle-gain goal.', action:null });
   } else if (plateau && weeksDieting >= 8) {
-    recs.push({ icon:'⏸️', act:1, title:`Plateau after ${Math.round(weeksDieting)} weeks — consider a diet break`,
+    recs.push({ icon:'', act:1, title:`Plateau after ${Math.round(weeksDieting)} weeks — consider a diet break`,
       detail:`Weight is flat (${fmt.num(trend21,2)}%/wk) despite logged intake. 1-2 weeks at maintenance (~${targets.tdee} kcal) restores hormones + adherence (Byrne 2018 MATADOR), then resume the deficit.`, action:null });
   } else if (plateau) {
-    recs.push({ icon:'📉', act:1, title:'Plateau detected — tighten the deficit',
+    recs.push({ icon:'', act:1, title:'Plateau detected — tighten the deficit',
       detail:`3-week trend is flat. Drop ~100-150 kcal/day (target ${targets.kcal-125} kcal) OR add 2 cardio sessions (~250 kcal each), not both at once.`, action:null });
   } else if (ratio != null && ratio < 0.5 && kcalDays >= 4) {
-    recs.push({ icon:'🔥', act:1, title:'Losing slower than target',
+    recs.push({ icon:'', act:1, title:'Losing slower than target',
       detail:`Trend ${fmt.num(Math.abs(trend14),2)}%/wk vs ${Math.abs(goalPct)}% target. Your real TDEE may be lower than the formula — ${adaptive ? `measured: ${adaptive.tdee} kcal.` : 'log meals daily to unlock measured TDEE.'} Shave 100 kcal/day or add one cardio session.`,
       action:{ label:'Raise rate to '+Math.min(1, p.goal_rate_pct+0.1).toFixed(2)+'%/wk', fn:`coachAdjustRate(0.1)` } });
   } else if (ratio != null && ratio > 1.5) {
-    recs.push({ icon:'⚠️', act:1, title:'Losing too fast — protect your muscle',
+    recs.push({ icon:'', act:1, title:'Losing too fast — protect your muscle',
       detail:`${fmt.num(Math.abs(trend14),2)}%/wk is ${fmt.num(ratio,1)}× target. Above ~1%/wk, lean-mass loss accelerates (Garthe 2011). Add 150-200 kcal/day, prioritize protein + sleep.`,
       action:{ label:'Lower rate to '+Math.max(0.4, p.goal_rate_pct-0.1).toFixed(2)+'%/wk', fn:`coachAdjustRate(-0.1)` } });
   } else if (ratio != null && ratio >= 0.7 && ratio <= 1.3) {
-    recs.push({ icon:'🎯', act:0, title:'Dialed in — change nothing',
+    recs.push({ icon:'', act:0, title:'Dialed in — change nothing',
       detail:`Losing ${fmt.num(Math.abs(trend14),2)}%/wk vs ${Math.abs(goalPct)}% target. The plan is working; consistency is the play.`, action:null });
   }
   if (protDays < 5 && kcalDays >= 4) {
-    recs.push({ icon:'🥩', act:1, title:`Protein hit only ${protDays}/7 days`,
+    recs.push({ icon:'', act:1, title:`Protein hit only ${protDays}/7 days`,
       detail:`In a deficit, protein is the muscle-retention lever (Helms 2014). Target ${targets.protein_g}g/day — front-load it: 40g+ at breakfast makes the day easy.`, action:null });
   }
   if (kcalDays < 5) {
-    recs.push({ icon:'📓', act:1, title:`Only ${kcalDays}/7 days logged`,
-      detail:'The adaptive TDEE engine and these recommendations are only as good as the data. Photo-log (📷 AI tab) on lazy days — 10 seconds.', action:null });
+    recs.push({ icon:'', act:1, title:`Only ${kcalDays}/7 days logged`,
+      detail:'The adaptive TDEE engine and these recommendations are only as good as the data. Photo-log (Scan AI tab) on lazy days — 10 seconds.', action:null });
   }
   if (done7 < planned * 0.8) {
-    recs.push({ icon:'💪', act:1, title:`Training: ${done7}/${planned} sessions`,
+    recs.push({ icon:'', act:1, title:`Training: ${done7}/${planned} sessions`,
       detail: lowVolMuscles.length ? `Under-volumed this week: ${lowVolMuscles.slice(0,3).join(', ')}. Even an abbreviated session (top 3 compounds) counts.` : 'Even an abbreviated session (top 3 compounds, 25 min) keeps the adaptation signal alive.', action:null });
   }
   if (avgSleep != null && avgSleep < 7) {
-    recs.push({ icon:'😴', act:1, title:`Sleep averaging ${fmt.num(avgSleep,1)}h`,
+    recs.push({ icon:'', act:1, title:`Sleep averaging ${fmt.num(avgSleep,1)}h`,
       detail:'Short sleep blunts fat loss and spikes hunger (Cappuccio 2008). In a deficit, 7-9h is part of the program, not optional.', action:null });
   }
   if (weighIns7 >= 6 && recs.filter(r=>r.act).length === 0) {
-    recs.push({ icon:'✨', act:0, title:'Excellent week across the board', detail:'Weigh-ins, food, training, recovery — all green. Boring consistency is what transformation actually looks like.', action:null });
+    recs.push({ icon:'', act:0, title:'Excellent week across the board', detail:'Weigh-ins, food, training, recovery — all green. Boring consistency is what transformation actually looks like.', action:null });
   }
 
   return {
@@ -1124,7 +1139,7 @@ async function openCoachReport() {
     </div>
     <h3 style="margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">This week's calls</h3>
     ${r.recs.map(rec => `<div class="coach-rec ${rec.act?'act':''}">
-      <div class="rec-title">${rec.icon} ${rec.title}</div>
+      <div class="rec-title">${rec.title}</div>
       <div class="rec-detail">${rec.detail}</div>
       ${rec.action ? `<button class="btn tiny secondary" style="margin-top:8px" onclick="${rec.action.fn}">${rec.action.label}</button>` : ''}
     </div>`).join('')}
@@ -1134,7 +1149,7 @@ async function openCoachReport() {
       <div class="tile"><div class="label">Protein</div><div class="value num" style="font-size:17px">${r.targets.protein_g}g</div><div class="sub">/day</div></div>
       <div class="tile"><div class="label">Sessions</div><div class="value num" style="font-size:17px">${r.planned}</div><div class="sub">+ daily steps</div></div>
     </div>
-    ${aiOn ? `<div style="height:12px"></div><button class="btn full secondary" id="coach-ai-btn" onclick="coachAINarrative()">✨ AI coach take (uses your API key)</button><div id="coach-ai-out" style="margin-top:10px"></div>` : ''}`;
+    ${aiOn ? `<div style="height:12px"></div><button class="btn full secondary" id="coach-ai-btn" onclick="coachAINarrative()">AI coach take</button><div id="coach-ai-out" style="margin-top:10px"></div>` : ''}`;
 }
 async function coachAINarrative() {
   const btn = document.getElementById('coach-ai-btn');
@@ -1155,11 +1170,11 @@ async function coachAINarrative() {
       `You are a precise, no-nonsense evidence-based fat-loss coach (Helms/Israetel school). Here is my week as JSON:\n${JSON.stringify(facts)}\n\nWrite a short coach check-in: 1) one-line verdict, 2) the single highest-leverage fix for next week with a concrete number, 3) one thing I did well. Max 110 words, second person, no headers, no bullet lists, no emoji.` }],
       { maxTokens: 300 });
     out.innerHTML = `<div class="coach-rec" style="border-left-color:var(--accent-3)"><div class="rec-detail" style="color:var(--text-2);font-size:13px;line-height:1.55">${text.replace(/\n/g,'<br>')}</div></div>`;
-    btn.textContent = '✨ Regenerate';
+    btn.textContent = 'Regenerate';
     btn.disabled = false;
   } catch (e) {
     out.innerHTML = `<span style="color:var(--bad);font-size:13px">${e.message}</span>`;
-    btn.textContent = '✨ AI coach take';
+    btn.textContent = 'AI coach take';
     btn.disabled = false;
   }
 }
@@ -1551,7 +1566,186 @@ const FOODS = [
   ['Coffee, black', 1, 0.1, 0, 0],['Beer (12 oz)', 43, 0.5, 3.6, 0],
   ['Wine, red (5 oz)', 85, 0.1, 2.6, 0],['Orange juice', 45, 0.7, 10, 0.2],
 ];
-const FOOD_DB = FOODS.map((f,i) => ({ id:'sys_'+i, name:f[0], serving_g:100, kcal:f[1], p:f[2], c:f[3], f:f[4] }));
+const FOOD_DB = FOODS.map((f,i) => ({ id:'sys_'+i, name:f[0], serving_g:100, kcal:f[1], p:f[2], c:f[3], f:f[4], micro: null }));
+// Lazy self-enrichment: built-in staples pull their USDA micro profile the first
+// time they're picked, then it's cached on-device for every future use.
+async function applyStapleMicroCache() {
+  const cache = (await getSetting('staple_micros', {})) || {};
+  for (const [idx, micro] of Object.entries(cache)) {
+    const f = FOOD_DB[+idx];
+    if (f && micro) f.micro = micro;
+  }
+}
+async function enrichStapleMicros(food, waitMs = 1800) {
+  if (!food || !String(food.id).startsWith('sys_') || food.micro || !navigator.onLine) return food;
+  const idx = +String(food.id).slice(4);
+  const attempt = (async () => {
+    try {
+      const results = await searchFDC(food.name.split(',')[0] + ' ' + (food.name.split(',')[1] || ''));
+      const match = results.find(r => r.micro && Math.abs(r.kcal - food.kcal) / Math.max(food.kcal, 1) <= 0.35);
+      if (!match) return;
+      food.micro = match.micro;
+      if (FOOD_DB[idx]) FOOD_DB[idx].micro = match.micro;
+      const cache = (await getSetting('staple_micros', {})) || {};
+      cache[idx] = match.micro;
+      await setSetting('staple_micros', cache);
+      updateWeighPreview();
+    } catch (e) { /* offline / rate-limited — stays macro-only */ }
+  })();
+  // Give it a short head start so the logged meal usually carries micros, but never block the UI long
+  await Promise.race([attempt, new Promise(r => setTimeout(r, waitMs))]);
+  return food;
+}
+
+// -------- Micronutrients (Cronometer-style) --------
+// All food micro objects are PER 100g; meal micro objects are per logged portion.
+// type 'target' = aim ≥ RDA · type 'limit' = stay ≤ limit.
+const MICROS = [
+  { k:'fiber',     label:'Fiber',       unit:'g',  type:'target', rda:{ male:38,   female:25 } },
+  { k:'sugar',     label:'Sugar',       unit:'g',  type:'limit',  rda:{ male:50,   female:50 } },
+  { k:'satfat',    label:'Sat. fat',    unit:'g',  type:'limit',  rda:{ male:24,   female:20 } },
+  { k:'sodium',    label:'Sodium',      unit:'mg', type:'limit',  rda:{ male:2300, female:2300 } },
+  { k:'potassium', label:'Potassium',   unit:'mg', type:'target', rda:{ male:3400, female:2600 } },
+  { k:'calcium',   label:'Calcium',     unit:'mg', type:'target', rda:{ male:1000, female:1000 } },
+  { k:'iron',      label:'Iron',        unit:'mg', type:'target', rda:{ male:8,    female:18 } },
+  { k:'magnesium', label:'Magnesium',   unit:'mg', type:'target', rda:{ male:400,  female:310 } },
+  { k:'zinc',      label:'Zinc',        unit:'mg', type:'target', rda:{ male:11,   female:8 } },
+  { k:'vita',      label:'Vitamin A',   unit:'µg', type:'target', rda:{ male:900,  female:700 } },
+  { k:'vitc',      label:'Vitamin C',   unit:'mg', type:'target', rda:{ male:90,   female:75 } },
+  { k:'vitd',      label:'Vitamin D',   unit:'µg', type:'target', rda:{ male:15,   female:15 } },
+  { k:'vite',      label:'Vitamin E',   unit:'mg', type:'target', rda:{ male:15,   female:15 } },
+  { k:'vitk',      label:'Vitamin K',   unit:'µg', type:'target', rda:{ male:120,  female:90 } },
+  { k:'vitb6',     label:'Vitamin B6',  unit:'mg', type:'target', rda:{ male:1.3,  female:1.3 } },
+  { k:'vitb12',    label:'Vitamin B12', unit:'µg', type:'target', rda:{ male:2.4,  female:2.4 } },
+  { k:'folate',    label:'Folate',      unit:'µg', type:'target', rda:{ male:400,  female:400 } },
+  { k:'chol',      label:'Cholesterol', unit:'mg', type:'limit',  rda:{ male:300,  female:300 } },
+  { k:'omega3',    label:'Omega-3',     unit:'g',  type:'target', rda:{ male:1.6,  female:1.1 } },
+];
+const MICRO_BY_KEY = Object.fromEntries(MICROS.map(m => [m.k, m]));
+function microTarget(def, sex) { return def.rda[sex === 'female' ? 'female' : 'male']; }
+function scaleMicros(micro, ratio) {
+  if (!micro) return null;
+  const out = {};
+  for (const [k, v] of Object.entries(micro)) if (v != null && isFinite(v)) out[k] = v * ratio;
+  return Object.keys(out).length ? out : null;
+}
+function sumMicros(list) {
+  const out = {}; let any = false;
+  for (const m of list) {
+    if (!m) continue;
+    any = true;
+    for (const [k, v] of Object.entries(m)) if (v != null && isFinite(v)) out[k] = (out[k] || 0) + v;
+  }
+  return any ? out : null;
+}
+// Open Food Facts nutriments (SI grams per 100g) → our micro shape, with sanity clamps
+function offMicros(nutr) {
+  if (!nutr) return null;
+  const grab = (key, mult = 1, max = Infinity) => {
+    let v = nutr[key + '_100g'];
+    if (v == null || isNaN(v)) return undefined;
+    v = v * mult;
+    return (v >= 0 && v <= max) ? v : undefined;
+  };
+  const m = {
+    fiber:     grab('fiber', 1, 80),
+    sugar:     grab('sugars', 1, 100),
+    satfat:    grab('saturated-fat', 1, 100),
+    sodium:    grab('sodium', 1000, 40000),
+    potassium: grab('potassium', 1000, 20000),
+    calcium:   grab('calcium', 1000, 10000),
+    iron:      grab('iron', 1000, 200),
+    magnesium: grab('magnesium', 1000, 3000),
+    zinc:      grab('zinc', 1000, 300),
+    vita:      grab('vitamin-a', 1e6, 30000),
+    vitc:      grab('vitamin-c', 1000, 3000),
+    vitd:      grab('vitamin-d', 1e6, 300),
+    vite:      grab('vitamin-e', 1000, 500),
+    vitk:      grab('vitamin-k', 1e6, 3000),
+    vitb6:     grab('vitamin-b6', 1000, 100),
+    vitb12:    grab('vitamin-b12', 1e6, 300),
+    folate:    grab('folates', 1e6, 5000),
+    chol:      grab('cholesterol', 1000, 3000),
+    omega3:    grab('omega-3-fat', 1, 60),
+  };
+  Object.keys(m).forEach(k => m[k] === undefined && delete m[k]);
+  return Object.keys(m).length ? m : null;
+}
+
+// -------- USDA FoodData Central (fills US branded-food gaps; per-100g basis) --------
+const FDC_BASE = 'https://api.nal.usda.gov/fdc/v1';
+async function fdcKey() { return (await getSetting('fdc_key', '')) || 'DEMO_KEY'; }
+// nutrientNumber → [field, multiplier-to-our-unit]
+const FDC_MAP = {
+  '208': ['kcal', 1], '203': ['p', 1], '205': ['c', 1], '204': ['f', 1],
+  '291': ['m.fiber', 1], '269': ['m.sugar', 1], '606': ['m.satfat', 1],
+  '307': ['m.sodium', 1], '306': ['m.potassium', 1], '301': ['m.calcium', 1],
+  '303': ['m.iron', 1], '304': ['m.magnesium', 1], '309': ['m.zinc', 1],
+  '320': ['m.vita', 1], '401': ['m.vitc', 1], '328': ['m.vitd', 1],
+  '323': ['m.vite', 1], '430': ['m.vitk', 1], '415': ['m.vitb6', 1],
+  '418': ['m.vitb12', 1], '435': ['m.folate', 1], '417': ['m.folate', 1],
+  '601': ['m.chol', 1], '851': ['m.omega3+', 1], '629': ['m.omega3+', 1], '621': ['m.omega3+', 1],
+};
+function fdcToFood(food) {
+  const out = { kcal: 0, p: 0, c: 0, f: 0 };
+  const micro = {};
+  let folateSet = false;
+  for (const n of (food.foodNutrients || [])) {
+    const num = String(n.nutrientNumber ?? n.nutrient?.number ?? '');
+    const val = n.value ?? n.amount;
+    const map = FDC_MAP[num];
+    if (!map || val == null || isNaN(val)) continue;
+    const [field] = map;
+    if (field === 'm.folate') { if (num === '435' || !folateSet) { micro.folate = val; folateSet = folateSet || num === '435'; } }
+    else if (field === 'm.omega3+') micro.omega3 = (micro.omega3 || 0) + val;
+    else if (field.startsWith('m.')) micro[field.slice(2)] = val;
+    else out[field] = val;
+  }
+  if (!out.kcal) return null;
+  const brand = (food.brandName || food.brandOwner || '').trim();
+  let name = (food.description || '').trim().toLowerCase().replace(/\b\w/g, ch => ch.toUpperCase());
+  if (brand && !name.toLowerCase().includes(brand.toLowerCase())) name = `${name} (${brand})`;
+  return {
+    id: 'fdc_' + food.fdcId,
+    name, serving_g: 100,
+    kcal: Math.round(out.kcal), p: out.p || 0, c: out.c || 0, f: out.f || 0,
+    micro: Object.keys(micro).length ? micro : null,
+    barcode: food.gtinUpc || undefined,
+    serving_hint: (food.servingSizeUnit || '').toLowerCase().startsWith('g') && food.servingSize ? Math.round(food.servingSize) : undefined,
+    src: 'fdc',
+  };
+}
+let _fdcCache = {};
+async function searchFDC(q) {
+  const key = q.toLowerCase().trim();
+  if (_fdcCache[key]) return _fdcCache[key];
+  const url = `${FDC_BASE}/foods/search?api_key=${encodeURIComponent(await fdcKey())}&query=${encodeURIComponent(q)}&dataType=Branded,SR%20Legacy,Foundation&pageSize=10`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('USDA search unavailable' + (r.status === 429 ? ' (rate limit — add your own free key in More → Integrations)' : ''));
+  const data = await r.json();
+  const out = (data.foods || []).map(fdcToFood).filter(Boolean);
+  _fdcCache[key] = out;
+  return out;
+}
+// Barcode lookup: FDC stores GTINs zero-padded to 13-14 digits
+async function fdcLookupBarcode(code) {
+  const clean = String(code).replace(/\D/g, '');
+  const variants = [...new Set([clean.padStart(14, '0'), clean.padStart(13, '0'), clean, clean.replace(/^0+/, '')])];
+  for (const v of variants.slice(0, 2)) {   // 2 tries max (rate limits)
+    try {
+      const url = `${FDC_BASE}/foods/search?api_key=${encodeURIComponent(await fdcKey())}&query=${encodeURIComponent('gtinUpc:' + v)}&dataType=Branded&pageSize=1`;
+      const r = await fetch(url);
+      if (!r.ok) continue;
+      const data = await r.json();
+      if (data.foods && data.foods.length) {
+        const f = fdcToFood(data.foods[0]);
+        if (f) return f;
+      }
+    } catch (e) { /* try next variant */ }
+  }
+  return null;
+}
+
 
 // -------- 8. Body silhouette — minimal abstract --------
 // Just head + smooth tapered torso + simple legs. No arms (they were what made it ugly).
@@ -1822,11 +2016,11 @@ async function finishOnboarding() {
 async function renderToday() {
   TITLE.textContent = 'Today';
   SUB.textContent = fmt.dateNice(today());
-  ACTIONS.innerHTML = `<button class="btn tiny secondary" onclick="openCoachReport()">🧭 Coach</button>`;
+  ACTIONS.innerHTML = `<button class="btn tiny secondary" onclick="openCoachReport()">Coach</button>`;
   const [score, projection, p, weights, meals, workouts, bio, adaptiveTDEE, recovery, weekly, streak, insight, coach] = await Promise.all([
     healthScore(), goalProjection(), getProfile(), getAll('weights'), getAll('meals'), getAll('workouts'), getAll('biometrics'), computeAdaptiveTDEE(), computeRecoveryScore(), computeWeeklySummary(), computeWeighInStreak(), dailyInsight(), computeCoachReport()
   ]);
-  if (streak >= 1) SUB.textContent += ` · 🔥 ${streak}-day streak`;
+  if (streak >= 1) SUB.textContent += ` · ${streak}-day streak`;
   const cur = latestWeight(weights) || p.weight_kg_start;
   // Use scale's BMR if available (latest reading from import)
   const scaleBMR = latestBio(bio, 'bmr');
@@ -1844,7 +2038,6 @@ async function renderToday() {
   VIEW.innerHTML = `
     ${insight ? `<div class="card insight-card">
       <div class="row" style="gap:12px;align-items:flex-start">
-        <div class="insight-emoji">${insight.emoji}</div>
         <div style="flex:1;min-width:0">
           <div class="insight-headline">${insight.headline}</div>
           <div class="insight-detail">${insight.detail}</div>
@@ -1856,8 +2049,8 @@ async function renderToday() {
     ${coach && coach.recs.length && coach.recs[0].act ? `<div class="card coach-card" onclick="openCoachReport()" style="cursor:pointer">
       <div class="row between" style="gap:10px">
         <div style="flex:1;min-width:0">
-          <div class="muted text-xs" style="font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">🧭 Coach · this week's top call</div>
-          <div style="font-weight:600;font-size:14px">${coach.recs[0].icon} ${coach.recs[0].title}</div>
+          <div class="muted text-xs" style="font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">Coach · this week's top call</div>
+          <div style="font-weight:600;font-size:14px">${coach.recs[0].title}</div>
         </div>
         <div style="text-align:center;flex-shrink:0">
           <div class="text-xl num" style="color:${coach.grade>=80?'var(--good)':coach.grade>=55?'var(--accent)':'var(--warn)'}">${coach.grade??'—'}</div>
@@ -1960,7 +2153,7 @@ async function renderToday() {
         <div class="tile"><div class="label">Deficit</div><div class="value num">−${t.deficitPerDay}</div><div class="sub">kcal/day${t.rawDeficit > t.deficitPerDay ? ' (capped)' : ''}</div></div>
         <div class="tile"><div class="label">Target</div><div class="value num">${t.kcal}</div><div class="sub">kcal to eat</div></div>
       </div>
-      ${!t.usingAdaptiveTDEE ? `<div class="muted text-sm" style="margin-top:10px">📈 Once you log ~14 days of weights + meals, I'll switch from the formula to your actual metabolism (Macrofactor-style adaptive TDEE).</div>` : `<div class="muted text-sm" style="margin-top:10px">📊 Adaptive: avg intake ${adaptiveTDEE.avgKcalIn} kcal/d, weight change ${fmt.delta(adaptiveTDEE.weightChangeKg)} over ${adaptiveTDEE.days}d → real burn ${adaptiveTDEE.tdee} kcal/d.</div>`}
+      ${!t.usingAdaptiveTDEE ? `<div class="muted text-sm" style="margin-top:10px">Once you log ~14 days of weights + meals, I'll switch from the formula to your actual metabolism (Macrofactor-style adaptive TDEE).</div>` : `<div class="muted text-sm" style="margin-top:10px">Adaptive: avg intake ${adaptiveTDEE.avgKcalIn} kcal/d, weight change ${fmt.delta(adaptiveTDEE.weightChangeKg)} over ${adaptiveTDEE.days}d → real burn ${adaptiveTDEE.tdee} kcal/d.</div>`}
     </div>
   `;
   tickNumber(document.getElementById('hero-score'));
@@ -1968,9 +2161,9 @@ async function renderToday() {
 
 function scoreRing(score) {
   const r = 36, c = 2*Math.PI*r, off = c - (score/100)*c;
-  const color = score>=80?'#2dd4a0':score>=60?'#ff6a3d':score>=40?'#ffb224':'#ff5d7a';
+  const color = score>=80?'#30d158':score>=60?'#ff5e1f':score>=40?'#ffb800':'#ff453a';
   return `<svg width="92" height="92" viewBox="0 0 92 92">
-    <defs><linearGradient id="ring-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${color}"/><stop offset="100%" stop-color="${score>=80?'#38bdf8':score>=60?'#ff2e7e':'#ff5d7a'}"/></linearGradient></defs>
+    <defs><linearGradient id="ring-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${color}"/><stop offset="100%" stop-color="${score>=80?'#14a04a':score>=60?'#ff3d00':'#ff453a'}"/></linearGradient></defs>
     <circle cx="46" cy="46" r="${r}" style="stroke:var(--ring-track)" stroke-width="7" fill="none"/>
     <circle cx="46" cy="46" r="${r}" stroke="url(#ring-g)" stroke-width="7" fill="none" stroke-dasharray="${c}" stroke-dashoffset="${off}" stroke-linecap="round" transform="rotate(-90 46 46)"/>
   </svg>`;
@@ -2065,6 +2258,244 @@ function exIcon(ex) {
   return `<svg width="22" height="22" viewBox="0 0 24 24" style="flex-shrink:0;color:var(--accent)">${svg}</svg>`;
 }
 
+// -------- Month calendar (full schedule view) --------
+function planShortLabel(key) {
+  const map = { push_a:'Push A', pull_a:'Pull A', legs_a:'Legs A', push_b:'Push B', pull_b:'Pull B', legs_b:'Legs B', rest:'Rest' };
+  return map[key] || ((PROGRAM_LABEL[key] || key).split('·')[0].trim());
+}
+let CAL_MONTH = null;   // 'YYYY-MM'
+function openMonthCalendar(delta = 0) {
+  if (!CAL_MONTH) CAL_MONTH = today().slice(0, 7);
+  if (delta) {
+    const [y, m] = CAL_MONTH.split('-').map(Number);
+    const d = new Date(y, m - 1 + delta, 1);
+    CAL_MONTH = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  }
+  renderMonthCalendar();
+}
+async function renderMonthCalendar() {
+  const [y, mo] = CAL_MONTH.split('-').map(Number);
+  const first = new Date(y, mo - 1, 1);
+  const startBlank = (first.getDay() + 6) % 7;          // Monday-first grid
+  const daysInMonth = new Date(y, mo, 0).getDate();
+  const workouts = await getAll('workouts');
+  const doneByDate = {};
+  workouts.forEach(w => { if (w.completed) doneByDate[w.date] = true; });
+  const todayStr = today();
+  let cells = '';
+  for (let i = 0; i < startBlank; i++) cells += '<div></div>';
+  let planned = 0, done = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dStr = `${CAL_MONTH}-${String(d).padStart(2, '0')}`;
+    const key = planForDate(dStr);
+    const isRest = key === 'rest';
+    if (!isRest) planned++;
+    const isDone = !!doneByDate[dStr];
+    if (isDone) done++;
+    const isToday = dStr === todayStr;
+    const isPast = dStr < todayStr;
+    cells += `<div class="cal-day ${isToday ? 'cal-today' : ''} ${isRest ? 'cal-rest' : ''} ${isDone ? 'cal-done' : ''} ${isPast && !isDone && !isRest ? 'cal-missed' : ''}"
+      onclick="WORKOUT_VIEW_DATE='${dStr}'===today()?null:'${dStr}';closeModal();route('workout')">
+      <div class="cal-num num">${d}</div>
+      <div class="cal-label">${isRest ? '—' : planShortLabel(key)}</div>
+      ${isDone ? '<div class="cal-tick">✓</div>' : ''}
+    </div>`;
+  }
+  const monthName = first.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+  openModal(`<header><h2>Schedule</h2><button class="close" onclick="closeModal()">Close</button></header>
+    <div class="row between" style="margin-bottom:10px">
+      <button class="btn small secondary" style="width:44px" onclick="openMonthCalendar(-1)">‹</button>
+      <div style="font-weight:700;font-size:16px">${monthName}</div>
+      <button class="btn small secondary" style="width:44px" onclick="openMonthCalendar(1)">›</button>
+    </div>
+    <div class="row" style="gap:10px;margin-bottom:10px">
+      <span class="pill subtle num">${planned} planned</span>
+      <span class="pill good num">${done} completed</span>
+    </div>
+    <div class="cal-grid" style="margin-bottom:4px">
+      ${['M','T','W','T','F','S','S'].map(d => `<div class="cal-dow">${d}</div>`).join('')}
+    </div>
+    <div class="cal-grid">${cells}</div>
+    <p class="muted text-sm" style="margin:12px 0 0">Tap any day to open its session. The split repeats weekly; the 5-week mesocycle adjusts intensity on top.</p>
+    <div style="height:10px"></div>
+    <button class="btn full secondary" onclick="openProgramOverview()">View full program</button>`);
+}
+
+// -------- Full program overview --------
+async function openProgramOverview() {
+  const p = await getProfile();
+  const prog = getProgram(p);
+  const mesoWeek = currentMesoWeek(p);
+  const phase = mesoPhase(p);
+  const dayNames = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  const days = prog.week.map((key, i) => {
+    const plan = prog.plans[key] || [];
+    return `<div style="margin-bottom:14px">
+      <div class="row between" style="margin-bottom:6px">
+        <div style="font-weight:700;font-size:14px">${dayNames[i]}</div>
+        <span class="pill ${key === 'rest' ? 'subtle' : 'accent'}">${prog.labels[key] || key}</span>
+      </div>
+      ${key === 'rest'
+        ? '<div class="muted text-sm" style="padding:2px 0 0 2px">Recovery · optional Z2 cardio, pool, or tennis</div>'
+        : plan.map(e => {
+            const ex = EX_BY_ID[e.id] || { name: e.id };
+            return `<div class="list-row" style="padding:8px 0" onclick="stopExAnim();openExerciseHowTo('${e.id}', 'openProgramOverview()')">
+              <div class="row" style="gap:10px;flex:1;min-width:0">
+                ${ex.img ? `<img src="${EX_IMG_BASE}${ex.img}/0.jpg" style="width:42px;height:30px;object-fit:cover;border-radius:6px;background:var(--bg-2)" loading="lazy" onerror="this.style.display='none'"/>` : ''}
+                <div class="name" style="font-size:13px">${ex.name}</div>
+              </div>
+              <span class="muted num text-sm" style="flex-shrink:0">${e.sets} × ${e.reps}</span>
+            </div>`;
+          }).join('')}
+    </div>`;
+  }).join('');
+  openModal(`<header><h2>${prog.name}</h2><button class="close" onclick="stopExAnim();closeModal()">Close</button></header>
+    <p class="muted text-sm" style="margin:0 0 10px">${prog.desc}</p>
+    <div class="card meso-card" style="margin-bottom:14px">
+      <div class="row between">
+        <div>
+          <div class="muted text-xs" style="font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Mesocycle · week ${mesoWeek} of 5 — ${phase.name}</div>
+          <div class="muted text-sm">${phase.desc}</div>
+        </div>
+        <div class="meso-dots">${[1,2,3,4,5].map(w => `<div class="meso-dot ${w===mesoWeek?'active':''} ${w<mesoWeek?'done':''}"></div>`).join('')}</div>
+      </div>
+    </div>
+    <div style="max-height:55vh;overflow-y:auto">${days}</div>
+    <div style="height:10px"></div>
+    <button class="btn full secondary" onclick="openProgramPicker()">Switch program</button>`);
+}
+
+// -------- Custom metrics (track anything: waist, BP, glucose, mood…) --------
+const METRIC_PRESETS = [
+  { name: 'Waist', unit: 'in', decimals: 1 },
+  { name: 'Blood pressure · systolic', unit: 'mmHg', decimals: 0 },
+  { name: 'Blood pressure · diastolic', unit: 'mmHg', decimals: 0 },
+  { name: 'Fasting glucose', unit: 'mg/dL', decimals: 0 },
+  { name: 'Mood', unit: '/10', decimals: 0 },
+  { name: 'Energy', unit: '/10', decimals: 0 },
+  { name: 'Stress', unit: '/10', decimals: 0 },
+  { name: 'Body temp', unit: '°F', decimals: 1 },
+  { name: 'Water intake', unit: 'L', decimals: 1 },
+  { name: 'Chest', unit: 'in', decimals: 1 },
+  { name: 'Arm', unit: 'in', decimals: 1 },
+  { name: 'Thigh', unit: 'in', decimals: 1 },
+];
+async function getCustomMetrics() { return (await getSetting('custom_metrics', [])) || []; }
+async function addCustomMetric(name, unit, decimals = 1) {
+  const defs = await getCustomMetrics();
+  if (defs.some(d => d.name.toLowerCase() === name.toLowerCase())) { toast('Already tracking that'); return null; }
+  const def = { id: 'm_' + Date.now().toString(36), name, unit, decimals };
+  defs.push(def);
+  await setSetting('custom_metrics', defs);
+  return def;
+}
+async function metricSpark(metricId, entries) {
+  const vals = entries.filter(e => e.metric_id === metricId).sort((a,b)=>a.date.localeCompare(b.date)).slice(-10).map(e => e.value);
+  if (vals.length < 2) return '';
+  const W = 56, H = 20, min = Math.min(...vals), max = Math.max(...vals), range = max - min || 1;
+  const pts = vals.map((v,i) => `${i===0?'M':'L'}${(i/(vals.length-1))*W},${H-((v-min)/range)*H}`).join(' ');
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="opacity:0.8"><path d="${pts}" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+async function renderMetricsTab() {
+  const [defs, entries] = await Promise.all([getCustomMetrics(), getAll('metric_entries')]);
+  const rows = await Promise.all(defs.map(async def => {
+    const mine = entries.filter(e => e.metric_id === def.id).sort((a,b)=>b.date.localeCompare(a.date));
+    const latest = mine[0];
+    const spark = await metricSpark(def.id, entries);
+    return `<div class="list-row" onclick="openMetricDetail('${def.id}')" style="cursor:pointer">
+      <div style="flex:1;min-width:0">
+        <div class="name">${def.name}</div>
+        <div class="sub">${latest ? `${fmt.num(latest.value, def.decimals)} ${def.unit} · ${fmt.dateNice(latest.date)}` : 'no entries yet'}</div>
+      </div>
+      ${spark}
+      <span class="muted" style="font-size:16px;margin-left:6px">›</span>
+    </div>`;
+  }));
+  return `
+    <div class="card">
+      <div class="h-row"><h3>Custom metrics</h3><button class="btn tiny secondary" onclick="openAddMetric()">+ Track new</button></div>
+      <p class="muted text-sm" style="margin:0 0 6px">Anything worth tracking: measurements, vitals, mood. Charts build as you log.</p>
+      ${rows.join('') || '<div class="empty">Nothing tracked yet — tap "+ Track new"</div>'}
+    </div>`;
+}
+function openAddMetric() {
+  openModal(`<header><h2>Track a new metric</h2><button class="close" onclick="closeModal()">Cancel</button></header>
+    <div class="muted text-sm" style="margin-bottom:8px">Quick picks:</div>
+    <div class="row wrap" style="gap:6px;margin-bottom:14px">
+      ${METRIC_PRESETS.map((p,i) => `<button class="btn tiny secondary" onclick="addPresetMetric(${i})">${p.name}</button>`).join('')}
+    </div>
+    <div class="divider"></div>
+    <label>Or custom — name</label><input id="cm-name" placeholder="e.g. Hip circumference"/>
+    <div class="grid-2" style="gap:10px;margin-top:8px">
+      <div><label>Unit</label><input id="cm-unit" placeholder="in, kg, bpm…"/></div>
+      <div><label>Decimals</label><select id="cm-dec"><option value="0">0</option><option value="1" selected>1</option><option value="2">2</option></select></div>
+    </div>
+    <div style="height:14px"></div>
+    <button class="btn full gradient" onclick="saveNewMetric()">Start tracking</button>`);
+}
+async function addPresetMetric(i) {
+  const p = METRIC_PRESETS[i];
+  const def = await addCustomMetric(p.name, p.unit, p.decimals);
+  if (def) { toast(`Tracking ${p.name}`); closeModal(); BODY_TAB = 'metrics'; renderBody(); }
+}
+async function saveNewMetric() {
+  const name = document.getElementById('cm-name').value.trim();
+  const unit = document.getElementById('cm-unit').value.trim() || '—';
+  const dec = parseInt(document.getElementById('cm-dec').value);
+  if (!name) return toast('Name it first');
+  const def = await addCustomMetric(name, unit, dec);
+  if (def) { toast(`Tracking ${name}`); closeModal(); BODY_TAB = 'metrics'; renderBody(); }
+}
+async function openMetricDetail(metricId) {
+  const defs = await getCustomMetrics();
+  const def = defs.find(d => d.id === metricId); if (!def) return;
+  const entries = (await getAll('metric_entries')).filter(e => e.metric_id === metricId).sort((a,b)=>a.date.localeCompare(b.date));
+  const chart = entries.length >= 2
+    ? lineChart(entries.slice(-30).map(e => ({ date: e.date, value: e.value })), { showReg: entries.length >= 4, yLabel: def.unit })
+    : '<div class="empty">Log 2+ entries to see the trend</div>';
+  openModal(`<header><h2>${def.name}</h2><button class="close" onclick="closeModal();renderBody()">Close</button></header>
+    <div class="row" style="gap:8px;margin-bottom:12px">
+      <input type="number" step="any" id="me-val" placeholder="${def.unit}" style="flex:1"/>
+      <input type="date" id="me-date" value="${today()}" style="flex:1"/>
+      <button class="btn" onclick="saveMetricEntry('${def.id}')">Log</button>
+    </div>
+    ${chart}
+    <h3 style="margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">History</h3>
+    <div style="max-height:240px;overflow-y:auto">
+    ${entries.slice().reverse().slice(0, 30).map(e => `<div class="list-row"><div><div class="name num">${fmt.num(e.value, def.decimals)} ${def.unit}</div><div class="sub">${fmt.dateNice(e.date)}</div></div><button class="x" onclick="deleteMetricEntry(${e.id}, '${def.id}')">×</button></div>`).join('') || '<div class="empty">No entries yet</div>'}
+    </div>
+    <div style="height:10px"></div>
+    <button class="btn full danger" onclick="deleteMetric('${def.id}')">Stop tracking ${def.name}</button>`);
+}
+async function saveMetricEntry(metricId) {
+  const v = parseFloat(document.getElementById('me-val').value);
+  const date = document.getElementById('me-date').value || today();
+  if (!isFinite(v)) return toast('Enter a value');
+  const entries = await getAll('metric_entries');
+  const ex = entries.find(e => e.metric_id === metricId && e.date === date);
+  if (ex) { ex.value = v; await put('metric_entries', ex); }
+  else await put('metric_entries', { metric_id: metricId, date, value: v });
+  if (navigator.vibrate) navigator.vibrate(15);
+  toast('Logged');
+  openMetricDetail(metricId);
+}
+async function deleteMetricEntry(id, metricId) {
+  await del('metric_entries', id);
+  openMetricDetail(metricId);
+}
+async function deleteMetric(metricId) {
+  if (!confirm('Stop tracking this metric and delete its entries?')) return;
+  let defs = await getCustomMetrics();
+  defs = defs.filter(d => d.id !== metricId);
+  await setSetting('custom_metrics', defs);
+  const entries = (await getAll('metric_entries')).filter(e => e.metric_id === metricId);
+  for (const e of entries) await del('metric_entries', e.id);
+  toast('Removed');
+  closeModal();
+  BODY_TAB = 'metrics';
+  renderBody();
+}
+
 let WORKOUT_VIEW_DATE = null;   // null = today
 // HRV suppression check: z-score of 7-day avg vs 28-day baseline (negative = suppressed)
 async function hrvSuppressionZ() {
@@ -2123,7 +2554,7 @@ async function renderWorkout() {
     <div class="card" style="background:linear-gradient(160deg, rgba(251,113,133,0.12), rgba(251,191,36,0.08));border:1px solid rgba(251,113,133,0.25)">
       <div class="row between" style="gap:10px">
         <div style="flex:1">
-          <div style="font-weight:700;margin-bottom:3px">🛑 HRV suppressed (z = ${hrvZ.toFixed(1)})</div>
+          <div style="font-weight:700;margin-bottom:3px">HRV suppressed (z = ${hrvZ.toFixed(1)})</div>
           <div class="muted text-sm">Your 7-day HRV is >1 SD below baseline — recovery is lagging. Consider pulling the deload forward.</div>
         </div>
         <button class="btn small secondary" style="flex-shrink:0" onclick="startDeloadNow()">Deload now</button>
@@ -2182,6 +2613,7 @@ async function renderWorkout() {
     </div>`;
   }
 
+  const musicCard = await musicCardHTML();
   VIEW.innerHTML = `
     ${week}
     <div class="card meso-card">
@@ -2195,6 +2627,7 @@ async function renderWorkout() {
     </div>
     ${deloadBanner}
     ${heroCard}
+    ${musicCard}
     ${viewKey !== 'rest' ? `<div class="card">
       <div class="h-row"><h3>Plan · ${planned.length} exercises</h3><button class="btn tiny ghost" onclick="openAddCardio(${session.id})">+ Cardio</button></div>
       ${planned.map((e,i) => exCard(session, e, i, allWorkouts.filter(w=>w.id!==session.id))).join('')}
@@ -2214,8 +2647,7 @@ function renderWeekStrip(allWorkouts) {
   monday.setDate(now.getDate() - (dow === 0 ? 6 : dow - 1));
   const todayStr = today();
   const viewDate = WORKOUT_VIEW_DATE || todayStr;
-  const shortLabels = { push_a:'Push A', pull_a:'Pull A', legs_a:'Legs A', push_b:'Push B', pull_b:'Pull B', legs_b:'Legs B', rest:'Rest' };
-  const shortLabel = key => shortLabels[key] || ((PROGRAM_LABEL[key] || key).split('·')[0].trim());
+  const shortLabel = planShortLabel;
   let cells = '';
   for (let i = 0; i < 7; i++) {
     const d = new Date(monday); d.setDate(monday.getDate() + i);
@@ -2233,7 +2665,11 @@ function renderWeekStrip(allWorkouts) {
       ${completed ? '<div class="wd-check">✓</div>' : ''}
     </div>`;
   }
-  return `<div class="card" style="padding:10px"><div class="week-strip">${cells}</div></div>`;
+  return `<div class="card" style="padding:10px"><div class="week-strip">${cells}</div>
+    <div class="row" style="gap:6px;margin-top:8px">
+      <button class="btn tiny ghost" style="flex:1" onclick="openMonthCalendar()">Month view</button>
+      <button class="btn tiny ghost" style="flex:1" onclick="openProgramOverview()">Full program</button>
+    </div></div>`;
 }
 function setWorkoutDay(dStr) { WORKOUT_VIEW_DATE = dStr === today() ? null : dStr; renderWorkout(); }
 
@@ -2347,7 +2783,7 @@ async function openExercise(sessionId, idx) {
       <div class="muted text-sm">${e.sets} × ${e.reps} @ RIR ${e.rir}${suggested?` · suggest <span class="num">${fmt.num(UNITS==='imperial'?kgToLb(suggested):suggested,1)} ${fmt.weightUnit()}</span>`:''}</div>
       <div class="row" style="gap:6px">
         ${ex.desc ? `<button class="btn tiny secondary" onclick="openExerciseHowTo('${e.id}')">How to</button>` : ''}
-        <button class="btn tiny secondary" onclick="openExerciseHistory('${e.id}')">📈</button>
+        <button class="btn tiny secondary" onclick="openExerciseHistory('${e.id}')">Hx</button>
         ${isBarbell ? `<button class="btn tiny secondary" onclick="openPlateCalc('${e.id}')">Plates</button>` : ''}
       </div>
     </div>
@@ -2438,7 +2874,7 @@ function openExerciseHowTo(exId, backTo) {
       <p style="margin:0;line-height:1.5;color:var(--text-2);font-size:14px">${ex.mistakes.replace(/\\\\'/g, "'")}</p>` : ''}
     <div style="height:14px"></div>
     <div class="row" style="gap:8px">
-      <button class="btn secondary small" style="flex:1" onclick="stopExAnim();openExerciseHistory('${ex.id}')">📈 History</button>
+      <button class="btn secondary small" style="flex:1" onclick="stopExAnim();openExerciseHistory('${ex.id}')">History</button>
       ${ex.video ? `<a href="${ex.video}" target="_blank" class="btn secondary small" style="flex:1">▶ YouTube</a>` : ''}
     </div>`);
   startExAnim(exId);
@@ -2470,7 +2906,7 @@ async function openExerciseHistory(exId) {
     <h3 style="margin:16px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Recent sessions</h3>
     ${sessions.slice(-8).reverse().map(s => `<div class="list-row"><div><div class="name">${fmt.dateNice(s.date)}</div>
       <div class="sub num">${s.sets.map(x=>`${fmt.num(fmt.weightNum(x.weight),0)}×${x.reps}`).join(' · ')}</div></div>
-      <div class="num text-sm ${s.top>=prTop?'':'muted'}">${s.top>=prTop?'🏆 ':''}${fmt.num(fmt.weightNum(s.top),1)}</div></div>`).join('') || '<div class="empty">No sets logged yet</div>'}`);
+      <div class="num text-sm ${s.top>=prTop?'':'muted'}">${s.top>=prTop?'PR · ':''}${fmt.num(fmt.weightNum(s.top),1)}</div></div>`).join('') || '<div class="empty">No sets logged yet</div>'}`);
 }
 
 // Swap an exercise within a session for an alternative hitting the same muscles
@@ -2621,12 +3057,12 @@ async function saveExerciseSets(sessionId, exId, prevBestKg = 0, prev1RM = 0) {
     const new1RM = Math.max(...thisExSets.map(epley));
     if (newBest > prevBestKg && prevBestKg > 0) {
       const lb = UNITS === 'imperial' ? kgToLb(newBest) : newBest;
-      toast(`🏆 New PR: ${fmt.num(lb, 1)} ${fmt.weightUnit()}`);
+      toast(`New PR — ${fmt.num(lb, 1)} ${fmt.weightUnit()}`);
       fireConfetti();
       if (navigator.vibrate) navigator.vibrate([60, 40, 60, 40, 120]);
     } else if (new1RM > prev1RM && prev1RM > 0) {
       const lb = UNITS === 'imperial' ? kgToLb(new1RM) : new1RM;
-      toast(`📈 New e1RM: ${fmt.num(lb, 1)} ${fmt.weightUnit()}`);
+      toast(`New est. 1RM — ${fmt.num(lb, 1)} ${fmt.weightUnit()}`);
       fireConfetti(14);
     } else {
       toast('Sets saved');
@@ -2700,6 +3136,63 @@ async function swapTo(key) {
 }
 
 // -------- 13. Food --------
+// Daily micronutrient panel: %-of-target bars + data coverage (Cronometer-style)
+let MICRO_VIEW = 'today';   // 'today' | 'week'
+function setMicroView(v) { MICRO_VIEW = v; renderFood(); }
+function microPanelHTML(todayMeals, allMeals, profile) {
+  const sex = profile?.sex || 'male';
+  let micro, withData, totalMeals, label;
+  if (MICRO_VIEW === 'week') {
+    // average of daily sums over the last 7 days that have any meals
+    const days = {};
+    for (let i = 0; i < 7; i++) days[daysBack(i)] = [];
+    allMeals.forEach(m => { if (days[m.date]) days[m.date].push(m); });
+    const dayList = Object.values(days).filter(list => list.length);
+    const daySums = dayList.map(list => sumMicros(list.map(m => m.micro))).filter(Boolean);
+    micro = {};
+    if (daySums.length) {
+      for (const def of MICROS) {
+        const vals = daySums.map(s => s[def.k]).filter(v => v != null);
+        if (vals.length) micro[def.k] = vals.reduce((a,b)=>a+b,0) / daySums.length;
+      }
+    }
+    withData = allMeals.filter(m => m.date >= daysBack(6) && m.micro).length;
+    totalMeals = allMeals.filter(m => m.date >= daysBack(6)).length;
+    label = '7-day average';
+  } else {
+    micro = sumMicros(todayMeals.map(m => m.micro)) || {};
+    withData = todayMeals.filter(m => m.micro).length;
+    totalMeals = todayMeals.length;
+    label = 'today';
+  }
+  const rows = MICROS.map(def => {
+    const v = micro[def.k];
+    const target = microTarget(def, sex);
+    const pct = v != null ? (v / target) * 100 : 0;
+    const isLimit = def.type === 'limit';
+    const barCls = v == null ? '' : isLimit ? (pct > 100 ? 'bad' : pct > 75 ? 'warn' : 'good') : (pct >= 100 ? 'good' : '');
+    const disp = v == null ? '—' : v >= 100 ? Math.round(v) : fmt.num(v, 1);
+    return `<div style="margin:7px 0">
+      <div class="row between" style="margin-bottom:3px">
+        <span class="text-sm">${def.label}${isLimit ? ' <span class="muted" style="font-size:9px;text-transform:uppercase;letter-spacing:0.5px">limit</span>' : ''}</span>
+        <span class="muted num text-sm">${disp} / ${target >= 100 ? Math.round(target) : target} ${def.unit}${v != null ? ` · ${Math.round(pct)}%` : ''}</span>
+      </div>
+      <div class="progress ${barCls}" style="height:4px"><span style="width:${Math.min(100, pct)}%"></span></div>
+    </div>`;
+  }).join('');
+  return `<details class="card">
+    <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <h3 style="margin:0">Micronutrients</h3>
+      <span class="muted text-sm">${totalMeals ? `${withData}/${totalMeals} meals have data` : 'log to populate'}</span>
+    </summary>
+    <div class="segments" style="margin:12px 0 4px">
+      <button class="${MICRO_VIEW==='today'?'active':''}" onclick="event.preventDefault();setMicroView('today')">Today</button>
+      <button class="${MICRO_VIEW==='week'?'active':''}" onclick="event.preventDefault();setMicroView('week')">7-day avg</button>
+    </div>
+    <p class="muted text-sm" style="margin:6px 0 10px">Targets: NIH RDA/AI for ${sex === 'female' ? 'adult women' : 'adult men'} (${label}). Barcode + USDA + photo entries carry micro data; quick-adds don't.</p>
+    ${rows}
+  </details>`;
+}
 async function renderFood() {
   TITLE.textContent = 'Food';
   SUB.textContent = fmt.dateNice(today());
@@ -2718,9 +3211,10 @@ async function renderFood() {
       ${macroBar('Carbs', totals.c, t.carb_g, 'g')}
       ${macroBar('Fat', totals.f, t.fat_g, 'g')}
     </div>
+    ${microPanelHTML(todayMeals, meals, p)}
     <div class="card">
-      <div class="h-row"><h3>Meals</h3><button class="btn tiny secondary" onclick="copyYesterdayMeals()" title="Copy all of yesterday's meals">⟳ Copy yesterday</button></div>
-      ${todayMeals.length ? todayMeals.map(m => `<div class="list-row"><div><div class="name">${m.name}</div><div class="sub num">${fmt.num(m.kcal,0)} kcal · P${fmt.num(m.p,0)} C${fmt.num(m.c,0)} F${fmt.num(m.f,0)}</div></div><button class="x" onclick="removeMeal(${m.id})">×</button></div>`).join('') : `<div style="text-align:center;padding:28px 16px"><div style="font-size:36px;margin-bottom:10px;opacity:0.6">🍽️</div><div style="font-weight:600;color:var(--text);margin-bottom:4px">Nothing logged yet</div><div class="muted text-sm" style="margin-bottom:14px">Weigh food, search it, log it. Takes 10 seconds.</div><button class="btn small gradient" onclick="openAddFood()">Log first meal</button></div>`}
+      <div class="h-row"><h3>Meals</h3><button class="btn tiny secondary" onclick="copyYesterdayMeals()" title="Copy all of yesterday's meals">Copy yesterday</button></div>
+      ${todayMeals.length ? todayMeals.map(m => `<div class="list-row"><div><div class="name">${m.name}</div><div class="sub num">${fmt.num(m.kcal,0)} kcal · P${fmt.num(m.p,0)} C${fmt.num(m.c,0)} F${fmt.num(m.f,0)}</div></div><button class="x" onclick="removeMeal(${m.id})">×</button></div>`).join('') : `<div style="text-align:center;padding:28px 16px"><div style="font-weight:600;color:var(--text);margin-bottom:4px">Nothing logged yet</div><div class="muted text-sm" style="margin-bottom:14px">Weigh food, search it, log it. Takes 10 seconds.</div><button class="btn small gradient" onclick="openAddFood()">Log first meal</button></div>`}
     </div>
     ${yesterdayMeals.length ? `<div class="card">
       <h3>Yesterday · tap to re-log</h3>
@@ -2743,7 +3237,7 @@ function renderAddFood() {
   openModal(`<header><h2>Add to today</h2><button class="close" onclick="closeModal()">Cancel</button></header>
     <div class="segments" style="margin-bottom:12px">
       <button class="${ADD_FOOD_TAB==='weigh'?'active':''}" onclick="setAddFoodTab('weigh')">Weigh</button>
-      <button class="${ADD_FOOD_TAB==='photo'?'active':''}" onclick="setAddFoodTab('photo')">📷 AI</button>
+      <button class="${ADD_FOOD_TAB==='photo'?'active':''}" onclick="setAddFoodTab('photo')">Scan AI</button>
       <button class="${ADD_FOOD_TAB==='quick'?'active':''}" onclick="setAddFoodTab('quick')">Quick</button>
       <button class="${ADD_FOOD_TAB==='build'?'active':''}" onclick="setAddFoodTab('build')">Build${MEAL_BUILDER.length?` · ${MEAL_BUILDER.length}`:''}</button>
     </div>
@@ -2870,6 +3364,7 @@ function offProductToFood(prod) {
     p: nutr.proteins_100g || 0,
     c: nutr.carbohydrates_100g || 0,
     f: nutr.fat_100g || 0,
+    micro: offMicros(nutr),
     barcode: prod.code,
     src: 'off',
   };
@@ -2895,11 +3390,11 @@ async function localFoodMatches(q) {
 }
 // Persist an Open Food Facts pick into custom_foods so it's searchable offline next time
 async function cacheOnlineFood(food) {
-  if (!food || food.src !== 'off') return;
+  if (!food || (food.src !== 'off' && food.src !== 'fdc')) return;
   const custom = await getAll('custom_foods');
-  if (custom.some(c => c.barcode && c.barcode === food.barcode)) return;
+  if (custom.some(c => c.barcode && food.barcode && c.barcode === food.barcode)) return;
   if (custom.some(c => c.name === food.name)) return;
-  await put('custom_foods', { name: food.name, serving_g: 100, kcal: food.kcal, p: food.p, c: food.c, f: food.f, barcode: food.barcode });
+  await put('custom_foods', { name: food.name, serving_g: 100, kcal: food.kcal, p: food.p, c: food.c, f: food.f, micro: food.micro || null, barcode: food.barcode });
 }
 // Favorites (global setting)
 async function getFavFoods() { return (await getSetting('fav_foods', [])) || []; }
@@ -2918,7 +3413,7 @@ async function toggleFavFood(id) {
 function foodRowHTML(f, onpick, favNames) {
   const isFav = favNames && favNames.has(f.name);
   return `<div class="list-row" onclick="${onpick}('${f.id}')" style="cursor:pointer">
-    <div style="flex:1;min-width:0"><div class="name">${f.name}${f.src==='off'?'<span class="src-badge off">ONLINE</span>':''}${isFav?'<span class="src-badge fav">★</span>':''}</div>
+    <div style="flex:1;min-width:0"><div class="name">${f.name}${f.src==='off'?'<span class="src-badge off">OFF</span>':''}${f.src==='fdc'?'<span class="src-badge usda">USDA</span>':''}${isFav?'<span class="src-badge fav">★</span>':''}</div>
     <div class="sub num">100g: ${Math.round(f.kcal)} kcal · P${fmt.num(f.p,1)} C${fmt.num(f.c,1)} F${fmt.num(f.f,1)}</div></div>
     <button class="fav-star ${isFav?'on':''}" onclick="event.stopPropagation();toggleFavFood('${f.id}')" aria-label="Favorite">★</button>
     <button class="add">Pick</button>
@@ -2943,17 +3438,17 @@ async function searchMealBuilderFoods(q) {
   if (lc.length >= 3 && navigator.onLine) {
     clearTimeout(_offDebounce);
     _offDebounce = setTimeout(async () => {
-      try {
-        const online = await searchOFF(q);
-        const cur = document.getElementById('mb-search');
-        if (!cur || cur.value.toLowerCase().trim() !== lc) return;   // stale
-        const fresh = online.filter(o => !locals.some(l => l.name === o.name));
-        registerResults(fresh);
-        if (fresh.length) el.innerHTML = (locals.length ? el.innerHTML : '') +
-          `<div class="muted" style="font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin:10px 0 2px">Open Food Facts</div>` +
-          fresh.map(f => foodRowHTML(f, 'pickMealBuilderFood', favNames)).join('');
-        else if (!locals.length) el.innerHTML = '<div class="empty">No match — try Quick add</div>';
-      } catch (e) { if (!locals.length) el.innerHTML = '<div class="empty">No local match · online search unavailable</div>'; }
+      const [offR, fdcR] = await Promise.allSettled([searchOFF(q), searchFDC(q)]);
+      const cur = document.getElementById('mb-search');
+      if (!cur || cur.value.toLowerCase().trim() !== lc) return;   // stale
+      const seen = new Set(locals.map(l => l.name.toLowerCase()));
+      const dedupe = list => list.filter(o => !seen.has(o.name.toLowerCase()) && (seen.add(o.name.toLowerCase()), true));
+      const fresh = [...(offR.status === 'fulfilled' ? dedupe(offR.value) : []), ...(fdcR.status === 'fulfilled' ? dedupe(fdcR.value) : [])];
+      registerResults(fresh);
+      if (fresh.length) el.innerHTML = (locals.length ? locals.map(f => foodRowHTML(f, 'pickMealBuilderFood', favNames)).join('') : '') +
+        `<div class="muted" style="font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin:10px 0 2px">Online results</div>` +
+        fresh.map(f => foodRowHTML(f, 'pickMealBuilderFood', favNames)).join('');
+      else if (!locals.length) el.innerHTML = '<div class="empty">No match — try Quick add</div>';
     }, 350);
   } else if (lc && !locals.length) {
     el.innerHTML = '<div class="empty">No match — type ≥3 letters for online search</div>';
@@ -2968,6 +3463,7 @@ async function pickMealBuilderFood(id) {
     MB_PICK = all.find(f => f.id === id);
   }
   if (!MB_PICK) return;
+  enrichStapleMicros(MB_PICK, 1200);
   openModal(`<header><h2>${MB_PICK.name}</h2><button class="close" onclick="openMealBuilderAdd()">Back</button></header>
     <div class="muted">Per 100 g: <span class="num">${MB_PICK.kcal}</span> kcal · P${MB_PICK.p} C${MB_PICK.c} F${MB_PICK.f}</div>
     <label>Serving (g)</label><input type="number" id="mb-serving" value="100" oninput="updateMBPreview()" />
@@ -2983,7 +3479,7 @@ function updateMBPreview() {
 function confirmMBAdd() {
   const g = parseFloat(document.getElementById('mb-serving').value) || 0;
   const r = g/100;
-  MEAL_BUILDER.push({ name: `${MB_PICK.name} (${g}g)`, kcal: MB_PICK.kcal*r, p: MB_PICK.p*r, c: MB_PICK.c*r, f: MB_PICK.f*r });
+  MEAL_BUILDER.push({ name: `${MB_PICK.name} (${g}g)`, kcal: MB_PICK.kcal*r, p: MB_PICK.p*r, c: MB_PICK.c*r, f: MB_PICK.f*r, micro: scaleMicros(MB_PICK.micro, r) });
   cacheOnlineFood(MB_PICK);
   ADD_FOOD_TAB = 'build';
   renderAddFood();
@@ -3064,36 +3560,46 @@ async function lookupBarcode(code) {
   if (!code) return;
   const status = document.getElementById('bc-status');
   if (status) status.textContent = `Looking up ${code}…`;
+  let food = null;
+  // 1) Open Food Facts (global, label-sourced)
   try {
     const r = await fetch(`https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json`);
     const data = await r.json();
-    if (data.status !== 1) throw new Error('Product not found in Open Food Facts');
-    const prod = data.product;
-    const nutr = prod.nutriments || {};
-    const food = {
-      id: 'bc_' + code,
-      name: prod.product_name || prod.product_name_en || prod.generic_name || `Barcode ${code}`,
-      serving_g: 100,
-      kcal: nutr['energy-kcal_100g'] || (nutr['energy_100g'] ? nutr['energy_100g'] / 4.184 : 0) || 0,
-      p: nutr.proteins_100g || 0,
-      c: nutr.carbohydrates_100g || 0,
-      f: nutr.fat_100g || 0,
-    };
-    // Persist as custom food so it shows in future searches
-    await put('custom_foods', { name: food.name, serving_g: 100, kcal: food.kcal, p: food.p, c: food.c, f: food.f, barcode: code });
-    WEIGH_PICK_FOOD = food;
-    closeModal();
-    // Re-render the weigh tab with the picked food
-    renderAddFood();
-    setTimeout(() => {
-      const el = document.getElementById('weigh-search');
-      if (el) el.value = food.name;
-      updateWeighPreview();
-    }, 50);
-    toast(`Found: ${food.name}`);
-  } catch (e) {
-    if (status) status.innerHTML = `<span style="color:var(--bad)">${e.message}. Try Quick add tab instead.</span>`;
+    if (data.status === 1) {
+      const prod = data.product;
+      const nutr = prod.nutriments || {};
+      const kcal = nutr['energy-kcal_100g'] || (nutr['energy_100g'] ? nutr['energy_100g'] / 4.184 : 0) || 0;
+      if (kcal > 0) {
+        food = {
+          id: 'bc_' + code,
+          name: prod.product_name || prod.product_name_en || prod.generic_name || `Barcode ${code}`,
+          serving_g: 100, kcal,
+          p: nutr.proteins_100g || 0, c: nutr.carbohydrates_100g || 0, f: nutr.fat_100g || 0,
+          micro: offMicros(nutr), barcode: code, src: 'off',
+        };
+      }
+    }
+  } catch (e) { /* fall through to USDA */ }
+  // 2) USDA FoodData Central (best US branded coverage)
+  if (!food) {
+    if (status) status.textContent = `Not in Open Food Facts — trying USDA…`;
+    try { food = await fdcLookupBarcode(code); } catch (e) {}
+    if (food) { food.id = 'bc_' + code; food.barcode = food.barcode || code; }
   }
+  if (!food) {
+    if (status) status.innerHTML = `<span style="color:var(--bad)">Not found in Open Food Facts or USDA.</span> Snap the nutrition label with the AI tab, or use Quick add.`;
+    return;
+  }
+  await cacheOnlineFood(food);
+  WEIGH_PICK_FOOD = food;
+  closeModal();
+  renderAddFood();
+  setTimeout(() => {
+    const el = document.getElementById('weigh-search');
+    if (el) el.value = food.name;
+    updateWeighPreview();
+  }, 50);
+  toast(`Found: ${food.name}${food.src === 'fdc' ? ' (USDA)' : ''}`);
 }
 
 // -------- AI (Claude API, optional, key stays on-device) --------
@@ -3137,7 +3643,7 @@ async function renderPhotoFoodTab(body) {
   if (!hasKey) {
     body.innerHTML = `
       <div style="text-align:center;padding:18px 8px">
-        <div style="font-size:38px;margin-bottom:10px">📷✨</div>
+        
         <div style="font-weight:700;margin-bottom:6px">Snap a meal, get the macros</div>
         <p class="muted text-sm" style="margin:0 0 16px;line-height:1.5">Take a photo of any meal and Claude estimates each food item, portion size, and macros. You edit, then log. Needs an Anthropic API key (~$0.002 per photo). The key is stored only on this device.</p>
         <button class="btn gradient" onclick="closeModal();route('more');setTimeout(openAISettings,100)">Set up AI features</button>
@@ -3148,7 +3654,7 @@ async function renderPhotoFoodTab(body) {
   body.innerHTML = `
     <p class="muted text-sm" style="margin:0 0 12px">Photograph the meal from above with something for scale (fork, hand). Estimates are ±20% — weigh when precision matters.</p>
     <label class="btn full secondary" style="cursor:pointer;display:flex">
-      📷 Take / choose photo
+      Take / choose photo
       <input type="file" accept="image/*" capture="environment" style="display:none" onchange="analyzeFoodPhoto(event)"/>
     </label>
     <div id="pf-preview" style="margin-top:12px"></div>
@@ -3165,15 +3671,19 @@ async function analyzeFoodPhoto(e) {
     const dataUrl = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); });
     PHOTO_FOOD_DATAURL = dataUrl;
     preview.innerHTML = `<img src="${dataUrl}" style="width:100%;border-radius:12px;max-height:220px;object-fit:cover"/>`;
-    status.innerHTML = '🤖 Analyzing with Claude… <span class="muted">(2-6s)</span>';
+    status.innerHTML = 'Analyzing with Claude… <span class="muted">(2-6s)</span>';
     const b64 = dataUrl.split(',')[1];
     const text = await aiCall([
       { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } },
-      { type: 'text', text: 'Identify each distinct food item in this meal photo. Estimate portion weight in grams and nutrition FOR THAT PORTION (not per 100g). Respond with ONLY this JSON, no other text: {"items":[{"name":"...","grams":0,"kcal":0,"p":0,"c":0,"f":0}],"confidence":"low|medium|high","note":"one short tip about the estimate"} . p/c/f = protein/carbs/fat in grams. If no food is visible, return {"items":[],"note":"why"}.' }
+      { type: 'text', text: 'Identify each distinct food item in this meal photo. Estimate portion weight in grams and nutrition FOR THAT PORTION (not per 100g). Respond with ONLY this JSON, no other text: {"items":[{"name":"...","grams":0,"kcal":0,"p":0,"c":0,"f":0,"micro":{"fiber":0,"sugar":0,"satfat":0,"sodium":0,"potassium":0,"calcium":0,"iron":0}}],"confidence":"low|medium|high","note":"one short tip"} . p/c/f and fiber/sugar/satfat in grams; sodium/potassium/calcium in mg; iron in mg. If no food is visible, return {"items":[],"note":"why"}.' }
     ], { maxTokens: 1200 });
     const parsed = extractJSON(text);
     if (!parsed.items || !parsed.items.length) throw new Error(parsed.note || 'No food detected in the photo');
-    PHOTO_FOOD_ITEMS = parsed.items.map(it => ({ name: String(it.name||'Item'), grams: +it.grams||0, kcal: +it.kcal||0, p: +it.p||0, c: +it.c||0, f: +it.f||0 }));
+    PHOTO_FOOD_ITEMS = parsed.items.map(it => {
+      const micro = {};
+      if (it.micro && typeof it.micro === 'object') for (const [k, v] of Object.entries(it.micro)) { if (MICRO_BY_KEY[k] && isFinite(+v) && +v >= 0) micro[k] = +v; }
+      return { name: String(it.name||'Item'), grams: +it.grams||0, kcal: +it.kcal||0, p: +it.p||0, c: +it.c||0, f: +it.f||0, micro: Object.keys(micro).length ? micro : null };
+    });
     status.innerHTML = `<span class="pill ${parsed.confidence==='high'?'good':parsed.confidence==='medium'?'accent':'warn'}">confidence: ${parsed.confidence||'medium'}</span>${parsed.note?` <span class="muted text-sm">${parsed.note}</span>`:''}`;
     renderPhotoFoodResults();
   } catch (err) {
@@ -3214,11 +3724,12 @@ async function logPhotoFood(asOne) {
   if (!PHOTO_FOOD_ITEMS || !PHOTO_FOOD_ITEMS.length) return;
   if (asOne) {
     const tot = PHOTO_FOOD_ITEMS.reduce((o,it)=>({kcal:o.kcal+it.kcal,p:o.p+it.p,c:o.c+it.c,f:o.f+it.f}),{kcal:0,p:0,c:0,f:0});
-    const name = PHOTO_FOOD_ITEMS.length === 1 ? `${PHOTO_FOOD_ITEMS[0].name} (${Math.round(PHOTO_FOOD_ITEMS[0].grams)}g · 📷)` : `${PHOTO_FOOD_ITEMS.map(i=>i.name).slice(0,3).join(' + ')}${PHOTO_FOOD_ITEMS.length>3?' +':''} (📷)`;
+    tot.micro = sumMicros(PHOTO_FOOD_ITEMS.map(i => i.micro));
+    const name = PHOTO_FOOD_ITEMS.length === 1 ? `${PHOTO_FOOD_ITEMS[0].name} (${Math.round(PHOTO_FOOD_ITEMS[0].grams)}g · AI)` : `${PHOTO_FOOD_ITEMS.map(i=>i.name).slice(0,3).join(' + ')}${PHOTO_FOOD_ITEMS.length>3?' +':''} (AI)`;
     await put('meals', { date: today(), name, ...tot, created: Date.now() });
   } else {
     for (const it of PHOTO_FOOD_ITEMS) {
-      await put('meals', { date: today(), name: `${it.name} (${Math.round(it.grams)}g · 📷)`, kcal: it.kcal, p: it.p, c: it.c, f: it.f, created: Date.now() });
+      await put('meals', { date: today(), name: `${it.name} (${Math.round(it.grams)}g · AI)`, kcal: it.kcal, p: it.p, c: it.c, f: it.f, micro: it.micro || null, created: Date.now() });
     }
   }
   if (navigator.vibrate) navigator.vibrate(15);
@@ -3227,6 +3738,250 @@ async function logPhotoFood(asOne) {
   await evaluateAchievements();
   closeModal();
   renderFood();
+}
+
+// -------- Health-data bridge (Fitbit Air → Apple Health → iOS Shortcut → Lean) --------
+// Receives device metrics via URL fragment:  #hd=w:152.2,rhr:55,hrv:62,sleep:7.5,steps:9500,spo2:97,u:lb
+// Easy to emit from an iOS Shortcut Text action. Manual entries always win; bridge fills gaps.
+async function handleHashData() {
+  if (!location.hash || !location.hash.startsWith('#hd=')) return false;
+  const raw = decodeURIComponent(location.hash.slice(4));
+  history.replaceState(null, '', location.pathname + location.search);   // consume
+  const fields = {};
+  raw.split(/[,;]/).forEach(pair => {
+    const [k, v] = pair.split(':').map(s => (s || '').trim());
+    if (k && v !== undefined && v !== '') fields[k.toLowerCase()] = parseFloat(v) || v;
+  });
+  const today_ = today();
+  const imported = [];
+  // Weight (unit-aware)
+  if (isFinite(fields.w)) {
+    const kg = (fields.u === 'kg') ? fields.w : lbToKg(fields.w);
+    if (kg > 30 && kg < 250) {
+      const weights = await getAll('weights');
+      if (!weights.some(x => x.date === today_)) {
+        await put('weights', { date: today_, kg, source: 'bridge' });
+        imported.push('weight');
+      }
+    }
+  }
+  // Biometrics (fill-only)
+  const bio = await getAll('biometrics');
+  const ent = bio.find(b => b.date === today_) || { date: today_ };
+  const map = [['rhr','rhr',25,130],['hrv','hrv_rmssd',5,300],['sleep','sleep_hours',0,16],['spo2','spo2',70,100],
+               ['readiness','readiness',0,100],['stress','stress_score',0,100],['skintemp','skin_temp_delta',-5,5],
+               ['deepsleep','deep_sleep_h',0,8],['remsleep','rem_sleep_h',0,8],['bf','bf_pct',3,60]];
+  let bioChanged = false;
+  for (const [src, dst, lo, hi] of map) {
+    const v = fields[src];
+    if (isFinite(v) && v >= lo && v <= hi && ent[dst] == null) { ent[dst] = v; bioChanged = true; imported.push(src); }
+  }
+  if (bioChanged) await put('biometrics', ent);
+  // Steps
+  if (isFinite(fields.steps) && fields.steps > 0 && fields.steps < 120000) {
+    const steps = await getAll('steps');
+    if (!steps.some(s => s.date === today_)) {
+      await put('steps', { date: today_, count: Math.round(fields.steps) });
+      imported.push('steps');
+    }
+  }
+  if (imported.length) {
+    toast(`Synced from device: ${imported.join(', ')}`);
+    if (navigator.vibrate) navigator.vibrate([20, 30, 20]);
+  } else {
+    toast('Bridge data received — today already logged');
+  }
+  return true;
+}
+function openFitbitBridge() {
+  const appUrl = location.origin + location.pathname;
+  openModal(`<header><h2>Fitbit Air sync</h2><button class="close" onclick="closeModal()">Close</button></header>
+    <p class="muted text-sm" style="margin:0 0 10px;line-height:1.55">Your Fitbit Air already flows into <strong>Apple Health</strong> (via the Google Health app). An iOS Shortcut reads Apple Health and sends today's numbers here in one tap — no accounts, no servers.</p>
+    <div class="tile" style="margin-bottom:12px"><div class="label">The chain</div><div class="sub" style="font-size:12px;line-height:1.6;margin-top:4px">Fitbit Air → Google Health → Apple Health → Shortcut → Lean</div></div>
+    <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:14px 0 6px">One-time setup (~3 min)</h3>
+    <ol style="margin:0;padding-left:18px;color:var(--text-2);font-size:13px;line-height:1.7">
+      <li>Open the <strong>Shortcuts</strong> app → + new shortcut</li>
+      <li>Add <strong>Find Health Samples</strong> → type <em>Weight</em>, sorted Latest, limit 1</li>
+      <li>Repeat for <em>Resting Heart Rate</em>, <em>Heart Rate Variability</em>, <em>Sleep</em>, <em>Steps</em> (Steps: group by day, today)</li>
+      <li>Add a <strong>Text</strong> action and compose (insert the magic variables):<br>
+        <span class="kbd" style="font-size:11px">${appUrl}#hd=w:[Weight],rhr:[RHR],hrv:[HRV],sleep:[Sleep],steps:[Steps],u:lb</span></li>
+      <li>Add <strong>Open URLs</strong> with that text</li>
+      <li>Name it "Sync Lean" — run it each morning, or add a daily 9am Automation</li>
+    </ol>
+    <p class="muted text-sm" style="margin:12px 0 0">Anything you typed manually stays — the bridge only fills what's empty. Works with any app that can open a URL.</p>
+    <div style="height:12px"></div>
+    <button class="btn full secondary" onclick="testBridge()">Test with sample data</button>`);
+}
+async function testBridge() {
+  location.hash = '#hd=' + encodeURIComponent('rhr:56,hrv:64,sleep:7.4,steps:8421,u:lb');
+  await handleHashData();
+  closeModal();
+  route('body');
+}
+
+// -------- Spotify (playlists for everyone · Connect remote control with a Client ID) --------
+const SPOTIFY_PLAYLISTS = [
+  { name: 'Beast Mode', id: '37i9dQZF1DX76Wlfdnj7AP' },
+  { name: 'Gym Phonk', id: '37i9dQZF1DWWY64wDtewQt' },
+  { name: 'HYPE', id: '37i9dQZF1DX0XUsuxWHRQd' },
+  { name: 'Workout', id: '37i9dQZF1DX70RN3TfWWJh' },
+];
+const SPOTIFY_SCOPES = 'user-read-playback-state user-modify-playback-state user-read-currently-playing';
+async function spotifyConnected() { return !!(await getSetting('spotify_tokens')); }
+function _b64url(buf) { return btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+async function connectSpotify() {
+  const cid = (await getSetting('spotify_client_id', '')).trim();
+  if (!cid) { toast('Add your Spotify Client ID first'); return; }
+  const verifier = _b64url(crypto.getRandomValues(new Uint8Array(48)));
+  const challenge = _b64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
+  const state = _b64url(crypto.getRandomValues(new Uint8Array(12)));
+  localStorage.setItem('sp_verifier', verifier);
+  localStorage.setItem('sp_state', state);
+  const redirect = location.origin + location.pathname;
+  location.href = 'https://accounts.spotify.com/authorize?' + new URLSearchParams({
+    client_id: cid, response_type: 'code', redirect_uri: redirect,
+    scope: SPOTIFY_SCOPES, code_challenge_method: 'S256', code_challenge: challenge, state,
+  });
+}
+async function handleSpotifyCallback() {
+  const params = new URLSearchParams(location.search);
+  const code = params.get('code'), state = params.get('state');
+  if (!code || !state || state !== localStorage.getItem('sp_state')) return false;
+  history.replaceState(null, '', location.pathname);
+  const cid = (await getSetting('spotify_client_id', '')).trim();
+  try {
+    const r = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ grant_type: 'authorization_code', code, redirect_uri: location.origin + location.pathname, client_id: cid, code_verifier: localStorage.getItem('sp_verifier') || '' }),
+    });
+    if (!r.ok) throw new Error('Token exchange failed');
+    const t = await r.json();
+    await setSetting('spotify_tokens', { at: t.access_token, rt: t.refresh_token, exp: Date.now() + (t.expires_in - 60) * 1000 });
+    toast('Spotify connected');
+  } catch (e) { toast('Spotify connect failed — check Client ID + redirect URI'); }
+  localStorage.removeItem('sp_verifier'); localStorage.removeItem('sp_state');
+  return true;
+}
+async function spotifyToken() {
+  let tok = await getSetting('spotify_tokens');
+  if (!tok) return null;
+  if (Date.now() > tok.exp) {
+    const cid = (await getSetting('spotify_client_id', '')).trim();
+    try {
+      const r = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: tok.rt, client_id: cid }),
+      });
+      if (!r.ok) throw new Error('refresh failed');
+      const t = await r.json();
+      tok = { at: t.access_token, rt: t.refresh_token || tok.rt, exp: Date.now() + (t.expires_in - 60) * 1000 };
+      await setSetting('spotify_tokens', tok);
+    } catch (e) { await setSetting('spotify_tokens', null); return null; }
+  }
+  return tok.at;
+}
+async function spotifyAPI(path, method = 'GET') {
+  const at = await spotifyToken();
+  if (!at) throw new Error('not-connected');
+  const r = await fetch('https://api.spotify.com/v1' + path, { method, headers: { Authorization: 'Bearer ' + at } });
+  if (r.status === 204) return null;
+  if (r.status === 403) throw new Error('premium');
+  if (r.status === 404) throw new Error('no-device');
+  if (!r.ok) throw new Error('spotify-' + r.status);
+  const text = await r.text();
+  return text ? JSON.parse(text) : null;
+}
+async function spotifyControl(action) {
+  try {
+    if (action === 'next') await spotifyAPI('/me/player/next', 'POST');
+    else if (action === 'prev') await spotifyAPI('/me/player/previous', 'POST');
+    else {
+      const state = await spotifyAPI('/me/player');
+      if (state && state.is_playing) await spotifyAPI('/me/player/pause', 'PUT');
+      else await spotifyAPI('/me/player/play', 'PUT');
+    }
+    setTimeout(refreshNowPlaying, 600);
+  } catch (e) {
+    if (e.message === 'premium') toast('Playback control needs Spotify Premium');
+    else if (e.message === 'no-device') toast('Start playing in the Spotify app first');
+    else toast('Spotify unavailable');
+  }
+}
+async function refreshNowPlaying() {
+  const el = document.getElementById('sp-now'); if (!el) return;
+  try {
+    const s = await spotifyAPI('/me/player/currently-playing');
+    if (s && s.item) {
+      el.innerHTML = `<div class="name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.item.name}</div>
+        <div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${(s.item.artists||[]).map(a=>a.name).join(', ')}</div>`;
+      const btn = document.getElementById('sp-play'); if (btn) btn.textContent = s.is_playing ? '⏸' : '▶';
+    } else {
+      el.innerHTML = `<div class="sub">Nothing playing — open Spotify and start any track</div>`;
+    }
+  } catch (e) { el.innerHTML = `<div class="sub">Spotify not reachable</div>`; }
+}
+async function musicCardHTML() {
+  const connected = await spotifyConnected();
+  const chips = SPOTIFY_PLAYLISTS.map(p =>
+    `<a class="btn tiny secondary" style="flex-shrink:0" href="https://open.spotify.com/playlist/${p.id}" target="_blank" rel="noopener">${p.name}</a>`).join('');
+  if (!connected) {
+    return `<div class="card" style="padding:14px">
+      <div class="h-row"><h3>Music</h3><button class="btn tiny ghost" onclick="openIntegrations()">Connect Spotify</button></div>
+      <div style="display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px">${chips}</div>
+    </div>`;
+  }
+  setTimeout(refreshNowPlaying, 60);
+  return `<div class="card" style="padding:14px">
+    <div class="h-row"><h3>Music</h3><span class="pill good">Spotify</span></div>
+    <div class="row between" style="gap:10px">
+      <div id="sp-now" style="flex:1;min-width:0"><div class="sub">Loading…</div></div>
+      <div class="row" style="gap:6px;flex-shrink:0">
+        <button class="btn small secondary" style="width:42px;padding:9px 0" onclick="spotifyControl('prev')">⏮</button>
+        <button class="btn small secondary" style="width:42px;padding:9px 0" id="sp-play" onclick="spotifyControl('toggle')">⏯</button>
+        <button class="btn small secondary" style="width:42px;padding:9px 0" onclick="spotifyControl('next')">⏭</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:10px;padding-bottom:2px">${chips}</div>
+  </div>`;
+}
+
+// -------- Integrations hub (More) --------
+async function openIntegrations() {
+  const fdc = await getSetting('fdc_key', '');
+  const spotCid = await getSetting('spotify_client_id', '');
+  const spotOn = await spotifyConnected();
+  const appUrl = location.origin + location.pathname;
+  openModal(`<header><h2>Integrations</h2><button class="close" onclick="closeModal()">Close</button></header>
+
+    <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:4px 0 6px">Fitbit Air / Apple Health</h3>
+    <p class="muted text-sm" style="margin:0 0 8px">One-tap daily sync via an iOS Shortcut.</p>
+    <button class="btn full secondary" onclick="openFitbitBridge()">Set up the sync Shortcut</button>
+
+    <div class="divider"></div>
+    <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 6px">USDA food database</h3>
+    <p class="muted text-sm" style="margin:0 0 8px">Powers US barcode + branded-food coverage. The built-in shared key is rate-limited; a personal key is free & instant at <a href="https://api.data.gov/signup/" target="_blank">api.data.gov/signup</a>.</p>
+    <label>API key ${fdc ? '<span class="pill good" style="margin-left:6px">personal</span>' : '<span class="pill subtle" style="margin-left:6px">shared demo</span>'}</label>
+    <input type="password" id="int-fdc" placeholder="leave empty to use shared demo key" value="${fdc}" autocomplete="off"/>
+
+    <div class="divider"></div>
+    <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 6px">Spotify</h3>
+    <p class="muted text-sm" style="margin:0 0 8px">Playlists work for everyone. For in-app play/pause/skip (Premium), create a free app at <a href="https://developer.spotify.com/dashboard" target="_blank">developer.spotify.com</a> with redirect URI <span class="kbd" style="font-size:10px">${appUrl}</span> and paste the Client ID.</p>
+    <label>Client ID ${spotOn ? '<span class="pill good" style="margin-left:6px">connected</span>' : ''}</label>
+    <input id="int-spotify" placeholder="32-char client id" value="${spotCid}" autocomplete="off"/>
+    <div style="height:8px"></div>
+    ${spotOn
+      ? `<button class="btn full danger" onclick="setSetting('spotify_tokens', null).then(()=>{toast('Spotify disconnected');openIntegrations()})">Disconnect Spotify</button>`
+      : `<button class="btn full secondary" onclick="saveIntegrations().then(connectSpotify)">Connect Spotify</button>`}
+
+    <div style="height:14px"></div>
+    <button class="btn full gradient" onclick="saveIntegrations().then(()=>{toast('Saved');closeModal()})">Save</button>`);
+}
+async function saveIntegrations() {
+  const fdc = document.getElementById('int-fdc');
+  const sp = document.getElementById('int-spotify');
+  if (fdc) await setSetting('fdc_key', fdc.value.trim());
+  if (sp) await setSetting('spotify_client_id', sp.value.trim());
+  _fdcCache = {};
 }
 
 // -------- AI settings (More tab) --------
@@ -3282,7 +4037,7 @@ async function searchWeighFoods(q) {
   const rowFor = f => {
     const picked = WEIGH_PICK_FOOD?.id === f.id;
     return `<div class="list-row" onclick="pickWeighFood('${f.id}')" style="cursor:pointer;${picked?'background:rgba(122,168,255,0.1);border-radius:8px;padding:8px':''}">
-      <div style="flex:1;min-width:0"><div class="name">${f.name}${f.src==='off'?'<span class="src-badge off">ONLINE</span>':''}${favNames.has(f.name)?'<span class="src-badge fav">★</span>':''}</div>
+      <div style="flex:1;min-width:0"><div class="name">${f.name}${f.src==='off'?'<span class="src-badge off">OFF</span>':''}${f.src==='fdc'?'<span class="src-badge usda">USDA</span>':''}${favNames.has(f.name)?'<span class="src-badge fav">★</span>':''}</div>
       <div class="sub num">100g: ${Math.round(f.kcal)} kcal · P${fmt.num(f.p,1)} C${fmt.num(f.c,1)} F${fmt.num(f.f,1)}</div></div>
       <button class="fav-star ${favNames.has(f.name)?'on':''}" onclick="event.stopPropagation();toggleFavFood('${f.id}')" aria-label="Favorite">★</button>
       ${picked?'<span class="pill good">picked</span>':'<button class="add">Pick</button>'}
@@ -3293,30 +4048,35 @@ async function searchWeighFoods(q) {
   if (lc.length >= 3 && navigator.onLine) {
     clearTimeout(_offDebounce);
     _offDebounce = setTimeout(async () => {
-      try {
-        const online = await searchOFF(q);
-        const cur = document.getElementById('weigh-search');
-        if (!cur || cur.value.toLowerCase().trim() !== lc) return;   // stale query
-        const fresh = online.filter(o => !locals.some(l => l.name === o.name));
-        registerResults(fresh);
-        const box = document.getElementById('weigh-results');
-        if (!box) return;
-        if (fresh.length) box.innerHTML = locals.map(rowFor).join('') +
-          `<div class="muted" style="font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin:10px 0 2px">Open Food Facts · online</div>` +
-          fresh.map(rowFor).join('');
-        else if (!locals.length) box.innerHTML = '<div class="empty">No match anywhere — try Quick add</div>';
-      } catch (e) { /* offline / aborted — local results already shown */ }
+      const [offR, fdcR] = await Promise.allSettled([searchOFF(q), searchFDC(q)]);
+      const cur = document.getElementById('weigh-search');
+      if (!cur || cur.value.toLowerCase().trim() !== lc) return;   // stale query
+      const seen = new Set(locals.map(l => l.name.toLowerCase()));
+      const dedupe = list => list.filter(o => !seen.has(o.name.toLowerCase()) && (seen.add(o.name.toLowerCase()), true));
+      const off = offR.status === 'fulfilled' ? dedupe(offR.value) : [];
+      const fdc = fdcR.status === 'fulfilled' ? dedupe(fdcR.value) : [];
+      registerResults([...off, ...fdc]);
+      const box = document.getElementById('weigh-results');
+      if (!box) return;
+      const section = (title, list) => list.length ? `<div class="muted" style="font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin:10px 0 2px">${title}</div>` + list.map(rowFor).join('') : '';
+      if (off.length || fdc.length) box.innerHTML = locals.map(rowFor).join('') + section('Open Food Facts', off) + section('USDA', fdc);
+      else if (!locals.length) box.innerHTML = '<div class="empty">No match anywhere — try Quick add</div>';
     }, 350);
   }
 }
 async function pickWeighFood(id) {
   WEIGH_PICK_FOOD = SEARCH_RESULT_MAP[id];
+  if (WEIGH_PICK_FOOD?.serving_hint && !WEIGH_GRAMS) {
+    WEIGH_GRAMS = String(WEIGH_PICK_FOOD.serving_hint);
+    const g = document.getElementById('weigh-g'); if (g) g.value = WEIGH_GRAMS;
+  }
   if (!WEIGH_PICK_FOOD) {
     const custom = await getAll('custom_foods');
     const all = [...FOOD_DB, ...custom.map(c=>({...c, id:'cust_'+c.id}))];
     WEIGH_PICK_FOOD = all.find(f => f.id === id);
   }
   if (!WEIGH_PICK_FOOD) return;
+  enrichStapleMicros(WEIGH_PICK_FOOD, 1500);
   const inp = document.getElementById('weigh-search');
   if (inp) inp.value = WEIGH_PICK_FOOD.name;
   searchWeighFoods(WEIGH_PICK_FOOD.name);
@@ -3357,6 +4117,7 @@ async function logWeighFood() {
     p: WEIGH_PICK_FOOD.p * r,
     c: WEIGH_PICK_FOOD.c * r,
     f: WEIGH_PICK_FOOD.f * r,
+    micro: scaleMicros(WEIGH_PICK_FOOD.micro, r),
     created: Date.now()
   });
   if (navigator.vibrate) navigator.vibrate(15);
@@ -3372,6 +4133,7 @@ async function logBuiltMeal() {
   if (!MEAL_BUILDER.length) return;
   const name = document.getElementById('f-mealname').value || 'Built meal';
   const totals = MEAL_BUILDER.reduce((o,it) => ({ kcal:o.kcal+it.kcal, p:o.p+it.p, c:o.c+it.c, f:o.f+it.f }), {kcal:0,p:0,c:0,f:0});
+  totals.micro = sumMicros(MEAL_BUILDER.map(it => it.micro));
   if (document.getElementById('mb-save-template')?.checked) {
     await put('recipes', { name, items: MEAL_BUILDER.map(it => ({...it})), created: Date.now() });
     toast(`Template "${name}" saved`);
@@ -3391,7 +4153,7 @@ async function copyYesterdayMeals() {
   const yest = meals.filter(m => m.date === daysBack(1));
   if (!yest.length) return toast('Nothing logged yesterday');
   for (const m of yest) {
-    await put('meals', { date: today(), name: m.name, kcal: m.kcal, p: m.p, c: m.c, f: m.f, meal_type: m.meal_type, created: Date.now() });
+    await put('meals', { date: today(), name: m.name, kcal: m.kcal, p: m.p, c: m.c, f: m.f, micro: m.micro || null, meal_type: m.meal_type, created: Date.now() });
   }
   if (navigator.vibrate) navigator.vibrate(15);
   toast(`✓ Copied ${yest.length} meal${yest.length===1?'':'s'} from yesterday`);
@@ -3400,7 +4162,7 @@ async function copyYesterdayMeals() {
 // Re-log a single meal (from any day) to today
 async function relogMeal(id) {
   const m = await get('meals', id); if (!m) return;
-  await put('meals', { date: today(), name: m.name, kcal: m.kcal, p: m.p, c: m.c, f: m.f, meal_type: m.meal_type, created: Date.now() });
+  await put('meals', { date: today(), name: m.name, kcal: m.kcal, p: m.p, c: m.c, f: m.f, micro: m.micro || null, meal_type: m.meal_type, created: Date.now() });
   if (navigator.vibrate) navigator.vibrate(15);
   toast(`✓ Logged ${m.name}`);
   renderFood();
@@ -3437,7 +4199,7 @@ function updateServingPreview() {
 async function confirmAddFood() {
   const g = parseFloat(document.getElementById('serving').value)||0;
   const r = g/100;
-  await put('meals', { date: today(), name: `${PICK_FOOD.name} (${g}g)`, kcal: PICK_FOOD.kcal*r, p: PICK_FOOD.p*r, c: PICK_FOOD.c*r, f: PICK_FOOD.f*r, created: Date.now() });
+  await put('meals', { date: today(), name: `${PICK_FOOD.name} (${g}g)`, kcal: PICK_FOOD.kcal*r, p: PICK_FOOD.p*r, c: PICK_FOOD.c*r, f: PICK_FOOD.f*r, micro: scaleMicros(PICK_FOOD.micro, r), created: Date.now() });
   toast('Logged');
   closeModal();
   renderFood();
@@ -3680,14 +4442,15 @@ async function renderBody() {
       ${!hasScaleData ? `
         <div class="divider"></div>
         <button class="btn full secondary" onclick="document.querySelector('.photo-strip-add')?.click() || setBodyTab('photos')">
-          <span style="font-size:18px;margin-right:6px">📷</span> ${recentPhotos.length ? 'Add this week photo' : 'Take your first progress photo'}
+          ${recentPhotos.length ? 'Add this week photo' : 'Take your first progress photo'}
         </button>
       ` : ''}
     </div>
 
     <div class="segments" style="margin-bottom:14px">
       <button class="${BODY_TAB==='overview'?'active':''}" onclick="setBodyTab('overview')">Overview</button>
-      <button class="${BODY_TAB==='log'?'active':''}" onclick="setBodyTab('log')">Log today</button>
+      <button class="${BODY_TAB==='log'?'active':''}" onclick="setBodyTab('log')">Log</button>
+      <button class="${BODY_TAB==='metrics'?'active':''}" onclick="setBodyTab('metrics')">Metrics</button>
       <button class="${BODY_TAB==='photos'?'active':''}" onclick="setBodyTab('photos')">Photos</button>
       <button class="${BODY_TAB==='history'?'active':''}" onclick="setBodyTab('history')">History</button>
     </div>
@@ -3698,10 +4461,10 @@ async function renderBody() {
         <div class="photo-strip">${photoStripHtml}</div>
         <button class="btn full ghost small" style="margin-top:8px" onclick="setBodyTab('photos')">View all · ${recentPhotos.length} photo${recentPhotos.length===1?'':'s'}</button>
       </div>` : (!hasScaleData ? `<div class="card" style="text-align:center;padding:24px 16px">
-        <div style="font-size:32px;margin-bottom:8px">📸</div>
+        
         <h3 style="margin-bottom:6px;color:var(--text);text-transform:none;letter-spacing:0;font-size:16px">Take weekly progress photos</h3>
         <p class="muted text-sm" style="margin:0 0 14px">With weight alone, photos are how you'll see real recomp. Same time + lighting + pose, weekly.</p>
-        <label class="btn gradient" style="cursor:pointer"><span style="font-size:16px;margin-right:6px">📷</span> Take first photo<input type="file" accept="image/*" capture="user" style="display:none" onchange="addPhoto(event)" class="photo-strip-add"/></label>
+        <label class="btn gradient" style="cursor:pointer">Take first photo<input type="file" accept="image/*" capture="user" style="display:none" onchange="addPhoto(event)" class="photo-strip-add"/></label>
       </div>` : '')}
 
       ${(leanMass != null && fatMass != null) ? `<div class="card">
@@ -3775,7 +4538,7 @@ async function renderBody() {
         </div>
         ${rhr==null && hrv==null && sleep==null ? `
           <div style="margin-top:14px;padding:14px;background:var(--bg-2);border-radius:12px;border:1px dashed var(--line)">
-            <div style="font-weight:600;margin-bottom:6px">📲 Connect your Fitbit Air</div>
+            <div style="font-weight:600;margin-bottom:6px">Connect your Fitbit Air</div>
             <div class="muted text-sm" style="margin-bottom:10px">Open <strong>Google Health</strong> on iPhone → Connections → <strong>Apple Health</strong> → toggle on. Then each morning, glance at Google Health and type RHR, HRV, sleep, steps into "Log today" above.</div>
             <button class="btn small secondary" onclick="setBodyTab('log')">Open Log today →</button>
           </div>
@@ -3827,7 +4590,7 @@ async function renderBody() {
         <div style="height:14px"></div>
         <button class="btn full gradient" onclick="saveBiometrics()">Save today's metrics</button>
       </div>
-    ` : BODY_TAB==='photos' ? await renderPhotosTab(weights, bio) : `
+    ` : BODY_TAB==='metrics' ? await renderMetricsTab() : BODY_TAB==='photos' ? await renderPhotosTab(weights, bio) : `
       <div class="card">
         <h3>Recent readings</h3>
         ${bio.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,30).map(b => `
@@ -3866,9 +4629,9 @@ function bigRing(bf, progress, startBF, goalBF) {
     <svg width="220" height="220" viewBox="0 0 220 220">
       <defs>
         <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ffb13d"/>
-          <stop offset="50%" stop-color="#ff5e3a"/>
-          <stop offset="100%" stop-color="#ff2e7e"/>
+          <stop offset="0%" stop-color="#ff9d2e"/>
+          <stop offset="50%" stop-color="#ff5e1f"/>
+          <stop offset="100%" stop-color="#ff3d00"/>
         </linearGradient>
       </defs>
       <!-- Background ring -->
@@ -3898,9 +4661,9 @@ function weightRing(curKg, progress, p) {
     <svg width="220" height="220" viewBox="0 0 220 220">
       <defs>
         <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ffb13d"/>
-          <stop offset="50%" stop-color="#ff5e3a"/>
-          <stop offset="100%" stop-color="#ff2e7e"/>
+          <stop offset="0%" stop-color="#ff9d2e"/>
+          <stop offset="50%" stop-color="#ff5e1f"/>
+          <stop offset="100%" stop-color="#ff3d00"/>
         </linearGradient>
       </defs>
       <circle cx="${cx}" cy="${cy}" r="${r}" style="stroke:var(--ring-track)" stroke-width="14" fill="none"/>
@@ -4881,8 +5644,8 @@ async function renderMore() {
       <h3>Appearance</h3>
       <div class="segments">
         <button class="${THEME_PREF==='auto'?'active':''}" onclick="setThemePref('auto')">Auto</button>
-        <button class="${THEME_PREF==='light'?'active':''}" onclick="setThemePref('light')">☀️ Light</button>
-        <button class="${THEME_PREF==='dark'?'active':''}" onclick="setThemePref('dark')">🌙 Dark</button>
+        <button class="${THEME_PREF==='light'?'active':''}" onclick="setThemePref('light')">Light</button>
+        <button class="${THEME_PREF==='dark'?'active':''}" onclick="setThemePref('dark')">Dark</button>
       </div>
       <p class="muted text-sm" style="margin:10px 0 0">Auto follows your iPhone's system setting.</p>
     </div>
@@ -4890,6 +5653,11 @@ async function renderMore() {
       <div class="h-row"><h3>AI features</h3><span class="pill ${AI_ON_CACHE?'good':'subtle'}">${AI_ON_CACHE?'enabled':'off'}</span></div>
       <p class="muted text-sm" style="margin:0 0 10px">Photo food logging + AI coach summaries. Bring your own Anthropic API key — stored only on this device.</p>
       <button class="btn full secondary" onclick="openAISettings()">${AI_ON_CACHE?'Manage AI settings':'Set up AI features'}</button>
+    </div>
+    <div class="card">
+      <div class="h-row"><h3>Integrations</h3></div>
+      <p class="muted text-sm" style="margin:0 0 10px">Fitbit Air sync · USDA food database · Spotify</p>
+      <button class="btn full secondary" onclick="openIntegrations()">Manage integrations</button>
     </div>
     <div class="card">
       <h3>Data</h3>
@@ -5180,7 +5948,7 @@ function tickNumber(el) {
 }
 
 // -------- 17. Service worker + cache hygiene --------
-const APP_VERSION = '2026-06-09-c';
+const APP_VERSION = '2026-06-10-a';
 if ('serviceWorker' in navigator && navigator.serviceWorker) {
   window.addEventListener('load', async () => {
     try {
@@ -5246,6 +6014,7 @@ setTimeout(() => {
   try {
     await openDB();
     applyTheme(await getSetting('theme', 'auto'));
+    try { await applyStapleMicroCache(); } catch (e) {}
     const profiles = await getAllRaw('profile');
     if (profiles.length === 1 && !profiles[0].active) {
       // Migrate: mark the single existing profile as active + backfill profile_id
@@ -5262,6 +6031,8 @@ setTimeout(() => {
     const p = await getProfile();
     if (p) { UNITS = p.unit_system || 'imperial'; _activeProgram = PROGRAMS[p.program_id] || PROGRAMS[DEFAULT_PROGRAM]; }
     _bootDone = true;
+    try { await handleSpotifyCallback(); } catch (e) {}
+    try { if (p && p.onboarded) await handleHashData(); } catch (e) {}
     route('today');
   } catch (err) {
     _bootDone = true;

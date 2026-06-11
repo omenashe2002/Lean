@@ -1,6 +1,6 @@
 // Lean PWA — offline-first service worker
 // Bump CACHE on every release so clients pull fresh assets.
-const CACHE = 'lean-v8-2026-06-09-c';
+const CACHE = 'lean-v9-2026-06-10-a';
 const IMG_CACHE = 'lean-img-v1';     // exercise demonstration photos (persistent)
 const LIB_CACHE = 'lean-lib-v1';     // CDN libraries: zxing, pdf.js, tesseract, fflate (persistent)
 const IMG_CACHE_LIMIT = 400;

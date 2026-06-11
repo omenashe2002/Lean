@@ -208,6 +208,16 @@ settings:       { units, theme, notifications, last_export }
 
 ---
 
+## v16 changelog (2026-06-10) — F&F feedback release
+
+- **Food bank**: barcode cascade OFF → USDA FDC (gtinUpc zero-padded to 13/14 digits — the trick for US products); text search merges local + OFF + FDC (badged); FDC key in settings ('fdc_key', DEMO_KEY default, personal key via More → Integrations); built-in staples lazily self-enrich micros from FDC on first pick (settings 'staple_micros' cache).
+- **Micronutrients**: 19-nutrient `micro` object (per-100g on foods, per-portion on meals) across every log path incl. photo-AI (7 core estimated); MICROS table with NIH RDA/AI by sex, target vs limit semantics; collapsible daily panel in Food with %-bars, Today/7-day-avg toggle, coverage indicator.
+- **Schedule**: month calendar modal (planned label/day, completion ticks, missed dimming, month nav, monthly counts, tap-to-open) + full program overview (all 7 days × exercises with thumbs, meso context). Links under the week strip.
+- **Custom metrics**: DB v4 adds `metric_entries` store (profile-scoped, in backups); defs in settings 'custom_metrics'; 12 presets; Body → Metrics tab with sparklines; detail modal (chart, upsert-by-date logging, history, delete).
+- **Device bridge**: `#hd=` URL-fragment receiver (k:v pairs, unit-aware weight, range-validated, fill-only — manual always wins) + guided iOS Shortcut setup + test injection. Fitbit Air → Google Health → Apple Health → Shortcut → app.
+- **Spotify**: playlist deep links for all; optional PKCE OAuth (user Client ID in settings, redirect = app URL, tokens in settings 'spotify_tokens' w/ auto-refresh) for now-playing + prev/play-pause/next via Spotify Connect (Premium). Music card in Workout.
+- **Art direction (Nike pass)**: matte near-black (#09090b), single ember accent #ff5e1f (pink/violet eliminated incl. rings/charts/comp-bar/icon), neutral grays, emoji purged from all chrome (achievements/confetti retained), heavier numerals (hero 42/800, jumbo 58/800, tiles 24/800), r 16/11, flat tiles, restrained Apple-gray light theme. SW v9.
+
 ## v15 changelog (2026-06-09) — visual redesign
 - Flame-coral design system: all colors tokenized in :root; full light theme via `prefers-color-scheme` + manual override (`html[data-theme]`, More → Appearance, stored in settings `theme`).
 - New tokens: --accent-rgb, --on-accent, --glow-*, --nav-bg, --ring-track, --mm-*, --tile-*, --hero-bg; JS SVG (rings, muscle map) now uses style-attr CSS vars so both themes render correctly.
